@@ -13,13 +13,15 @@ body
   div.container
     h1 Adminning?  Sweeeeeet
     h2 Projects
-      form.form-inline
-        label(for="projectname") New Project:           
-          input#name(placeholder="Project Name",name="name")
-        input#action(type="hidden",name="action",value="createproject")
-        button.btn(type="submit") Create Project
-      -for(var project in locals.projects)
-        div(class=locals.projects[project].archive?"archived":"")!= locals.projects[project].name
+    -if(locals.projecterror)
+      h3!= locals.projecterror
+    form.form-inline
+      label(for="projectname") New Project:           
+        input#name(placeholder="Project Name",name="name")
+      input#action(type="hidden",name="action",value="createproject")
+      button.btn(type="submit") Create Project
+    -for(var project in locals.projects)
+      div(class=locals.projects[project].archive?"archived":"")!= locals.projects[project].name
     h2 Tasks
       ul
         -for(var task in locals.tasks)

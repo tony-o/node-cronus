@@ -13,7 +13,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   console.log("Creating models");
   /* DEFINE DB MODELS */
   var projectitem = db.define("project",{
-    "name":{"type":"string"}
+    "name":{"type":"string","validations":[orm.validators.unique()]}
     ,"archived":{"type":"bool"}
   });
   var taskitem = db.define("task",{
@@ -93,6 +93,9 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
             ,user:req.user
             ,projects:projects
             ,items:items
+            ,projecterror:(req.query["action"]=="createproject"&&e?e:null)
+            ,taskerror:(req.query["action"]=="createtask"&&e?e:null)
+
           }});
         });
       });
