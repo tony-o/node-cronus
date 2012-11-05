@@ -13,8 +13,9 @@ body
   div.container
     h1 Adminning?  Sweeeeeet
     h2 Projects
-    -for(var project in locals.projects)
-      h4(class="indent2 "+(locals.projects[project].archived?"archived":""))!= locals.projects[project].name + "<a href=\"/admin?action=" + (locals.projects[project].archived?"reviveproject":"archiveproject") + "&name=" + locals.projects[project].name + "\" class=\"small\">"+ (locals.projects[project].archived?"resurrect":"bury") +"</a>";
+    div#projectlist
+      -for(var project in locals.projects)
+        h4(class="indent2 "+(locals.projects[project].archived?"archived":""))!= locals.projects[project].name + "<a href=\"/admin?action=" + (locals.projects[project].archived?"reviveproject":"archiveproject") + "&name=" + locals.projects[project].name + "\" class=\"small\">"+ (locals.projects[project].archived?"resurrect":"bury") +"</a>";
     h3 Create Project:
     form.form-horizontal#projectform
       include i/errorbox 
@@ -25,9 +26,24 @@ body
         input#action(type="hidden",name="action",value="createproject")
         div.controls: button.btn.btn-primary#createproject(type="submit") Create Project
     h2 Tasks
-      ul
+      div#tasklist
         -for(var task in locals.tasks)
-          li(class=locals.tasks[task].archived?"archived":"")!= locals.tasks[task].name
+          h4(class="indent2 "+(locals.tasks[task].archived?"archived":""))!= locals.tasks[task].name
+      h3 Create Task:
+      form.form-horizontal#taskform
+        include i/errorbox
+        div.control-group
+          label.control-label(for="taskname") New Task:
+          div.controls: input#name.input-small(placeholder="Task Name",name="name")
+        div.control-group
+          label.control-label(for="projectname") Associated Project:
+          div.controls: select#projectname.input-medium(name="projectname")
+            -for(var project in locals.projects)
+              option(value=locals.projects[project].id) locals.projects[project].name
+        div.control-group
+          input#action(type="hidden",name="action",value="createtask")
+          div.controls: button.btn.btn-primary#createtask(type="submit") Create Task
+      
 
   include i/feeter
 
