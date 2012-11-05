@@ -13,6 +13,14 @@ body
   div.container
     h1 Time Tracker;
     h2 Track Time
-    form#timeform
+    form.form-horizontal#timeform
       p.localstoragewarning.error.hidden Warning: you cannot refresh once you start the timer
+      div.control-group
+        label.control-label(for="taskname") Task Name
+        div.controls: input#taskname.input-medium(name="taskname",placeholder="Task Name")
+      div.control-group
+        label.control-label(for="taskname") Task Name
+        div.controls: input#taskname.input-medium(name="taskname",placeholder="Task Name")
+      div.control-group
+        div.controls: button.btn.btn-primary#starttimer(type="submit") Start Timer 
   include i/feeter 
