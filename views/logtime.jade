@@ -16,40 +16,41 @@ body
       li: a(href="#opentimers") Open Timers
       li: a(href="#timerhistory") Time History
     h1 Time Tracker;
-     
-    h2#tracktime Track Time
-      form.form-inline#timeform
-        p.localstoragewarning.alert.alert-error.hidden Warning: you cannot refresh once you start the timer
-        input#timername.input-medium(name="timername",placeholder="Timer Name")
-        span  
-        -var ddd = -1;
-        select#projectname.input-medium(name="projectname",placeholder="Project Name")
-          -for(var i in locals.projects)
-            -if(locals.projects[i].archived){ continue; }
-            -if(ddd == -1){ ddd = locals.projects[i].id; }
-            option(value=locals.projects[i].id)!= locals.projects[i].name
-        span  
-        select#taskname.input-medium(name="taskname",placeholder="Task Name")
-          -for(var i in locals.tasks)
-            -if(locals.tasks[i].archived){ continue; }
-            -if(locals.tasks[i].project_id == ddd)
-              option(value=locals.tasks[i].id)!= locals.tasks[i].name
-        span  
-        input#timertime.input-medium(name="timertime",placeholder="Current Time",value="0.00")
-        button.btn.btn-primary#starttimer(type="submit") Start Timer
-        button.btn#savetime(type="submit") Save Time
-        
-    h2#opentimers Open Timers
-      div#opentimers
-        div.hidden
-          div.hidden: input.timerindex(type="hidden")
-          div.span2.name $$NAME$$
-          div.span2.project $$PROJECT$$
-          div.span2.task $$TASK$$
-          div.span2.time $$TIME$$
-          div.span2: button.btn.btn-primary.toggletimer $$ACTION$$ Timer
-          div.span2: button.btn.btn-success.submittime Submit Time
-          div.span2: button.btn.btn-danger#deletetimer Remove Timer
-    h2#timerhistory Timer History
-      div#history 
+    div#tracktime 
+      h2 Track Time
+        form.form-inline#timeform
+          p.localstoragewarning.alert.alert-error.hidden Warning: you cannot refresh once you start the timer
+          input#timername.input-medium(name="timername",placeholder="Timer Name")
+          span  
+          -var ddd = -1;
+          select#projectname.input-medium(name="projectname",placeholder="Project Name")
+            -for(var i in locals.projects)
+              -if(locals.projects[i].archived){ continue; }
+              -if(ddd == -1){ ddd = locals.projects[i].id; }
+              option(value=locals.projects[i].id)!= locals.projects[i].name
+          span  
+          select#taskname.input-medium(name="taskname",placeholder="Task Name")
+            -for(var i in locals.tasks)
+              -if(locals.tasks[i].archived){ continue; }
+              -if(locals.tasks[i].project_id == ddd)
+                option(value=locals.tasks[i].id)!= locals.tasks[i].name
+          span  
+          input#timertime.input-medium(name="timertime",placeholder="Current Time",value="0.00")
+          button.btn.btn-primary#starttimer(type="submit") Start Timer
+          button.btn#savetime(type="submit") Save Time
+    div#opentimers  
+      h2 Open Timers
+        div
+          div.hidden
+            div.hidden: input.timerindex(type="hidden")
+            div.span2.name $$NAME$$
+            div.span2.project $$PROJECT$$
+            div.span2.task $$TASK$$
+            div.span2.time $$TIME$$
+            div.span2: button.btn.btn-primary.toggletimer $$ACTION$$ Timer
+            div.span2: button.btn.btn-success.submittime Submit Time
+            div.span2: button.btn.btn-danger#deletetimer Remove Timer
+    div#timerhistory
+      h2 Timer History
+        div#history 
     include i/feeter 
