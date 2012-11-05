@@ -14,7 +14,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   /* DEFINE DB MODELS */
   var projectnamevalidation = function(val,n){return val&&val.length<3?n("too-short"):n();};
   var projectitem = db.define("project",{
-    "name":{"type":"string","validations":[orm.validators.unique(),projectitemvalidation]}
+    "name":{"type":"string","validations":[orm.validators.unique(),projectnamevalidation]}
     ,"archived":{"type":"bool"}
   });
   var taskitem = db.define("task",{
