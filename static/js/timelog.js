@@ -31,7 +31,7 @@ var reparsetimers = function(){
       if(qq[q].running){
         dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60);
       }
-      $(buffer).find(".time").text(Math.floor(dd214/60) + "." + (Math.round(((dd214%60)/60) * 1000)/1000));
+      $(buffer).find(".time").text(Math.floor(dd214/60) + "." + parseInt(((dd214%60)/60) * 1000));
       $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
       $(buffer).find(".index").text(q);
       $(buffer).removeClass("hidden");
