@@ -19,6 +19,7 @@ var reparsetimers = function(){
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
   var str = "";
+  $("#opentimers > div:gt(0)").remove();
   var template = $("#opentimers > div").first();
   for(var q in qq){ 
     var buffer = $(template).clone();
@@ -28,9 +29,8 @@ var reparsetimers = function(){
     $(buffer).find(".time").text(Math.random());
     $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
     $(buffer).find(".timerindex").val(q);
-    str += $(template).toString();
+    $("#opentimers").append(buffer);
   }
-  $("#opentimers").html(str);  
 };
 
 $("#timeform").submit(function(e){e.preventDefault();return false;});
@@ -55,3 +55,4 @@ $(".container ul.nav li a").first().click();
 setInterval(function(){
   reparsetimers();
 },60000);
+reparsetimers();
