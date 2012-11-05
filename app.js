@@ -42,13 +42,13 @@ var authenticated = function(req,res,n){
 app.get("/",function(req,res){
   res.redirect("/auth");
 });
-app.get("/account",function(req,res){
+app.get("/account",authenticated,function(req,res){
   res.render("account",{locals:{
     title:"Account Info"
     ,user:req.user
   }});
 });
-app.get("/logtime",function(req,res){
+app.get("/logtime",authenticated,function(req,res){
   res.render("logtime",{locals:{title:"Log Time"}});
 });
 
