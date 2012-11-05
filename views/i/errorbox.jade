@@ -1,2 +1,2 @@
--if(locals.error)
+-if(locals && locals.error)
   h3!= "Error: '" + locals.error.value + "', " + locals.error.msg
