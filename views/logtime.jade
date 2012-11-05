@@ -41,6 +41,15 @@ body
         
     h2#opentimers Open Timers
       div#opentimers
+        div.hidden
+          div.hidden: input.timerindex(type="hidden")
+          div.span2.name $$NAME$$
+          div.span2.project $$PROJECT$$
+          div.span2.task $$TASK$$
+          div.span2.time $$TIME$$
+          div.span2: button.btn.btn-primary.toggletimer $$ACTION$$ Timer
+          div.span2: button.btn.btn-success.submittime Submit Time
+          div.span2: button.btn.btn-danger#deletetimer Remove Timer
     h2#timerhistory Timer History
       div#history 
     include i/feeter 

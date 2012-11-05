@@ -19,7 +19,17 @@ var reparsetimers = function(){
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
   var str = "";
-  for(var q in qq){ str += JSON.stringify(qq[q]) + "<br/>"; }
+  var template = $("#opentimers > div").first();
+  for(var q in qq){ 
+    var buffer = $(template).clone();
+    $(buffer).find(".name").text(qq[q].title);
+    $(buffer).find(".project").text(qq[q].project);
+    $(buffer).find(".task").text(qq[q].task);
+    $(buffer).find(".time").text(Math.random());
+    $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
+    $(buffer).find(".timerindex").val(q);
+    str += $(template).toString();
+  }
   $("#opentimers").html(str);  
 };
 
@@ -41,3 +51,7 @@ $(".container ul.nav li a").click(function(){
   }
 });
 $(".container ul.nav li a").first().click();
+
+setInterval(function(){
+  reparsetimers();
+},60000);
