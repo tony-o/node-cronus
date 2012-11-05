@@ -39,7 +39,7 @@ body
           label.control-label(for="projectname") Associated Project:
           div.controls: select#projectname.input-medium(name="projectname")
             -for(var project in locals.projects)
-              option(value=locals.projects[project].id) locals.projects[project].name
+              option(value=locals.projects[project].id)!= locals.projects[project].name
         div.control-group
           input#action(type="hidden",name="action",value="createtask")
           div.controls: button.btn.btn-primary#createtask(type="submit") Create Task
