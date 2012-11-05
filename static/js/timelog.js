@@ -30,10 +30,13 @@ var reparsetimers = function(){
     $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
     $(buffer).find(".index").text(q);
     $(buffer).removeClass("hidden");
+    $(buffer).find(".deletetimer").click(function(){
+      qq.splice(q,1);
+      c.s("timers",JSON.stringify(qq));
+    });
     $("#opentimers").append(buffer);
   }
 };
-
 $("#timeform").submit(function(e){e.preventDefault();return false;});
 $("#starttimer, #savetimer").click(function(){
   var arr = c.g("timers");
