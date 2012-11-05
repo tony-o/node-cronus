@@ -85,10 +85,17 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   app.get("/admin",authenticated,function(req,res){
     var item;
     var server = function(e,i){
-      console.log("e:",JSON.stringify(e,1,1),"\ni:",i);
+      
       projectitem.find(function(projects){
         console.log("projects:",projects);
         taskitem.find(function(items){
+          if(req.query["json"]){
+            res.json({
+              projecterror:(req.query["action"]=="createproject"&&e?e:null)
+              ,taskerror:(req.query["action"]=="createtask"&&e?e:null)
+            });
+            return;
+          }
           res.render("admin",{locals:{
             title:"Admin"
             ,user:req.user
