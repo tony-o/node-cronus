@@ -13,7 +13,7 @@ body
   div.container
     h1 Log some time, holmes
     p: a(href="/logtime") GO >
-  
+    pre!= JSON.stringify(locals.user,1,1)  
 
   script(src="/js/jquery.js")
   
