@@ -91,8 +91,8 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         taskitem.find(function(items){
           if(req.query["json"]){
             res.json({
-              projecterror:jade.compile("i/errorbox",{locals:(req.query["action"]=="createproject"&&e?e:null)})()
-              ,taskerror:jade.compile("i/errorbox",{locals:(req.query["action"]=="createtask"&&e?e:null)})()
+              projecterror:jade.compile(fs.readFileSync("i/errorbox.jade"),{})({locals:(req.query["action"]=="createproject"&&e?e:null)})
+              ,taskerror:jade.compile(fs.readFileSync("i/errorbox.jade"),{})({locals:(req.query["action"]=="createtask"&&e?e:null)})
             });
             return;
           }
