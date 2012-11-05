@@ -38,9 +38,14 @@ $("#timeform").submit(function(e){e.preventDefault();return false;});
 $("#starttimer, #savetimer").click(function(){
   var arr = c.g("timers");
   arr = arr instanceof Array ? arr : []; 
-  arr.push({title:$("#timername").val(),project:$("#projectname").val(),task:$("#taskname").val(),start:new Date(),notes:$("#timernotes").val(),id:-1,running:$(this)==$("#savetimer")?false:true});
+  arr.push({title:$("#timername").val(),duration:$("#timertime").val(),project:$("#projectname").val(),task:$("#taskname").val(),start:new Date(),notes:$("#timernotes").val(),id:-1,running:$(this)==$("#savetimer")?false:true});
   c.s("timers",JSON.stringify(arr));
   reparsetimers();
+  $("#timername").val("");
+  $("#projectname").val("");
+  $("#taskname").val("");
+  $("#timernotes").val("");
+  $("#timertime").val("0.00");
 });
 $(".container ul.nav li a").click(function(){
   var dd = ["timerhistory","opentimers","tracktime"];
