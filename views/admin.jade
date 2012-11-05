@@ -26,24 +26,24 @@ body
         input#action(type="hidden",name="action",value="createproject")
         div.controls: button.btn.btn-primary#createproject(type="submit") Create Project
     h2 Tasks
-      div#tasklist
-        -for(var task in locals.tasks)
-          h4(class="indent2 "+(locals.tasks[task].archived?"archived":""))!= locals.tasks[task].name
-      h3 Create Task:
-      form.form-horizontal#taskform
-        include i/errorbox
-        div.control-group
-          label.control-label(for="taskname") New Task:
-          div.controls: input#name.input-medium(placeholder="Task Name",name="name")
-        div.control-group
-          label.control-label(for="projectname") Associated Project:
-          div.controls: select#projectname.input-medium(name="projectname")
-            -for(var project in locals.projects)
-              option(value=locals.projects[project].id)!= locals.projects[project].name
-        div.control-group
-          input#action(type="hidden",name="action",value="createtask")
-          div.controls: button.btn.btn-primary#createtask(type="submit") Create Task
-      
+    div#tasklist
+      -for(var task in locals.tasks)
+        h4(class="indent2 "+(locals.tasks[task].archived?"archived":""))!= locals.tasks[task].name
+    h3 Create Task:
+    form.form-horizontal#taskform
+      include i/errorbox
+      div.control-group
+        label.control-label(for="taskname") New Task:
+        div.controls: input#name.input-medium(placeholder="Task Name",name="name")
+      div.control-group
+        label.control-label(for="projectname") Associated Project:
+        div.controls: select#projectname.input-medium(name="projectname")
+          -for(var project in locals.projects)
+            option(value=locals.projects[project].id)!= locals.projects[project].name
+      div.control-group
+        input#action(type="hidden",name="action",value="createtask")
+        div.controls: button.btn.btn-primary#createtask(type="submit") Create Task
+    
 
   include i/feeter
 
