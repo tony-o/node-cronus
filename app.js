@@ -5,14 +5,12 @@ var passport = require("passport");
 var strategy = require("passport-google").Strategy;
 
 var app = express();
-console.log(JSON.stringify(process.env,1,1));
-console.log("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+process.env.DBHOSTDB);
 var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+process.env.DBHOSTDB,function(success,db){
   if(!success){
     console.error("Could not connect to db");
     return;
   }
-
+  console.log("Creating models");
   /* DEFINE DB MODELS */
   var projectitem = db.define("project",{
     "name":{"type":"string"}
