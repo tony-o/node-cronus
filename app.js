@@ -5,14 +5,14 @@ var strategy = require("passport-google").Strategy;
 
 var app = express();
 
-passport.serializeUser(function(u,d){d(null,d);});
-passport.deserializeUser(function(u,d){d(null,d);});
+passport.serializeUser(function(user,done){done(null,user);});
+passport.deserializeUser(function(user,d){done(null,user);});
 passport.use(new strategy({
     "returnURL":"http://timekeeping.odellam.com/auth/return"
     ,"realm":"http://timekeeping.odellam.com"
-  },function(id,pro,d){
-    pro.id = id;
-    return d(null,pro);
+  },function(id,profile,d){
+    profile.id = id;
+    return d(null,profile);
 }));
 app.configure(function(){
   app.use(express.cookieParser());
