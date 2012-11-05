@@ -12,6 +12,8 @@ body
           include i/menu
   div.container
     h1 Time Tracker;
-    div.newtime new time stuff
- 
+    h2 Track Time
+    form#timeform
+      -if(!(localStorage in window && window['localStorage'] !== null))
+        p.error Warning: you cannot refresh once you start the timer
   include i/feeter 
