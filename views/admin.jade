@@ -15,6 +15,7 @@ body
     h2 Projects
     -for(var project in locals.projects)
       h4(class="indent2 "+(locals.projects[project].archived?"archived":""))!= locals.projects[project].name + "<a href=\"/admin?action=" + (locals.projects[project].archived?"reviveproject":"archiveproject") + "&name=" + locals.projects[project].name + "\" class=\"small\">"+ (locals.projects[project].archived?"resurrect":"bury") +"</a>";
+    h3 Create Project:
     form.form-horizontal#projectform
       include i/errorbox 
       div.control-group
