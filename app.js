@@ -90,8 +90,8 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
       projectitem.find(function(projects){
         console.log("projects:",projects);
         taskitem.find(function(items){
-          projects.sort(function(a,b){return a.name > b.name;});
-          items.sort(function(a,b){return a.project > b.project;});
+          projects && projects.length && projects.sort(function(a,b){return a.name > b.name;});
+          items && items.length && items.sort(function(a,b){return a.project > b.project;});
           if(req.query["json"]){
             res.json({
               projecterror:jade.compile(fs.readFileSync(__dirname + "/views/i/errorbox.jade"),{})({locals:(req.query["action"]=="createproject"&&e?{error:e}:null)})
