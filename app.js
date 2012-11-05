@@ -36,8 +36,8 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   passport.serializeUser(function(user,done){done(null,user);});
   passport.deserializeUser(function(user,done){done(null,user);});
   passport.use(new strategy({
-      "returnURL":"http://timekeeping.odellam.com/auth/return"
-      ,"realm":"http://timekeeping.odellam.com"
+      "returnURL":"http://timekeeping.bestxperts.com/auth/return"
+      ,"realm":"http://timekeeping.bestxperts.com"
     },function(id,profile,d){
       profile.id = id;
       return d(null,profile);
