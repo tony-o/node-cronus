@@ -42,14 +42,15 @@ body
       h2 Open Timers
         div#timerlist
           div.hidden
-            div.hidden: input.timerindex(type="hidden")
+            div.span2.muted.index $$INDEX$$
             div.span2.name $$NAME$$
             div.span2.project $$PROJECT$$
             div.span2.task $$TASK$$
             div.span2.time $$TIME$$
-            div.span2: button.btn.btn-primary.toggletimer $$ACTION$$ Timer
-            div.span2: button.btn.btn-success.submittime Submit Time
-            div.span2: button.btn.btn-danger#deletetimer Remove Timer
+            div.span2 
+              button.btn.btn-primary.toggletimer $$ACTION$$ Timer
+              button.btn.btn-success.submittime Submit Time
+              button.btn.btn-danger.deletetimer Remove Timer
     div#timerhistory
       h2 Timer History
         div#history 

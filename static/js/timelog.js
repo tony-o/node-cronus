@@ -28,7 +28,7 @@ var reparsetimers = function(){
     $(buffer).find(".task").text(qq[q].task);
     $(buffer).find(".time").text(Math.random());
     $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
-    $(buffer).find(".timerindex").val(q);
+    $(buffer).find(".index").text(q);
     $(buffer).removeClass("hidden");
     $("#opentimers").append(buffer);
   }
