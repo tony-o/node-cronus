@@ -25,8 +25,8 @@ var reparsetimers = function(){
     (function(q,qq){ 
       var buffer = $(template).clone();
       $(buffer).find(".name").text(qq[q].title);
-      $(buffer).find(".project").text(qq[q].project);
-      $(buffer).find(".task").text(qq[q].task);
+      $(buffer).find(".project").text(qq[q].projname);
+      $(buffer).find(".task").text(qq[q].taskname);
       var dd214 = parseFloat(qq[q].duration) || 0;
       if(qq[q].running){
         dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
