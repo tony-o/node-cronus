@@ -82,7 +82,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     }});
   });
   app.get("/admin",authenticated,function(req,res){
-    console.log(JSON.stringify(res.query,1,1));
+    console.log("REQUEST",JSON.stringify(req.query,1,1));
     projectitem.find({},function(projects){
       console.log("projects:",projects);
       taskitem.find({},function(items){
