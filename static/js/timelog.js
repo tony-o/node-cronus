@@ -29,7 +29,7 @@ $("#starttimer").click(function(){
   c.s("timers",JSON.stringify(arr));
   reparsetimers();
 });
-$("ul li.nav a").click(function(){
+$("ul.nav li a").click(function(){
   var dd = ["timerhistory","opentimers","tracktime"];
   for(var d in dd){ 
     $("#" + dd[d]).hide();
@@ -38,4 +38,4 @@ $("ul li.nav a").click(function(){
     }
   }
 });
-$("ul li.nav a").first().click();
+$("ul.nav li a").first().click();
