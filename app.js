@@ -128,8 +128,14 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         });
         break;
       case "createtask":
-        item = new taskitem({"name":req.query["name"],"project_id":req.query["projectname"]});
-        item.save(server);
+        taskitem.find({"name":req.query["name"],"project_id":req.query["projectname"]},function(i){
+          if(i == null){
+            item = new taskitem({"name":req.query["name"],"project_id":req.query["projectname"]});
+            item.save(server);
+            return;
+          }
+          server("task name/project: not-unique",null);
+        });
         break;
       case "archivetask": case "revivetask":
         taskitem.find({"id":req.query["name"]},function(p){
