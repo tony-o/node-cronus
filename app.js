@@ -28,7 +28,7 @@ app.configure(function(){
 
 app.get("/auth",passport.authenticate("google"));
 app.get("/auth/return",passport.authenticate("google",{
-    "failureRedirect":"/login"
+    "failureRedirect":"/auth"
   }),function(req,res){
     res.redirect("/account");
 });
