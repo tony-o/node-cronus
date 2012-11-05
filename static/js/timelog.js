@@ -29,9 +29,9 @@ var reparsetimers = function(){
       $(buffer).find(".task").text(qq[q].task);
       var dd214 = parseFloat(qq[q].duration) || 0;
       if(qq[q].running){
-        dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60);
+        dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
       }
-      $(buffer).find(".time").text(Math.floor(dd214/60) + "." + parseInt(((dd214%60)/60) * 1000));
+      $(buffer).find(".time").text(Math.round(dd214*1000)/1000);
       $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
       $(buffer).find(".index").text(q);
       $(buffer).removeClass("hidden");
