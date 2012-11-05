@@ -85,9 +85,9 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
       ,starttime:req.body.start
       ,duration:req.body.duration
     });
-    item.save(function(newitem){
-      if(newitem == null){
-        res.json({});
+    item.save(function(e,newitem){
+      if(e != null){
+        res.json({e:e});
       }else{
         res.json({id:newitem.id});
       }

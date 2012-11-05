@@ -51,7 +51,7 @@ var reparsetimers = function(){
           ,method:"POST"
           ,data:qq[q]
           ,success:function(data,status,xhr){
-            gg[q].id = data.id;
+            gg[q].id = (data.id) ? data.id : -1;
             c.s("timers",JSON.stringify(gg));
           }
         });
