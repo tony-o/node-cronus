@@ -20,7 +20,7 @@ app.configure(function(){
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  app.use(express.static(__dirname + "/html"));
+  app.use(express.static(__dirname + "/static"));
   app.set("views",__dirname + "/views");
   app.set("view engine","jade");
 });

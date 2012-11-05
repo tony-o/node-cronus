@@ -1,0 +1,19 @@
+include head
+body
+  div.navbar.navbar-inverse.navbar-fixed-top
+    div.navbar-inner
+      div.container
+        a.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.brand(href="#") Timekeeping
+        div.nav-collapse.collapse
+          include menu
+  div.container
+    h1 Log some time, holmes
+    p: a(href="/logtime") GO >
+  
+
+  script(src="/js/jquery.js")
+  

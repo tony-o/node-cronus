@@ -5,6 +5,7 @@
     "express":""
     ,"passport":""
     ,"passport-google":""
+    ,"jade":""
   }
   ,"engines":{
     "node":"0.8.x"
