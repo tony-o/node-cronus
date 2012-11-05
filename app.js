@@ -77,6 +77,22 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
       ,user:req.user
     }});
   });
+  app.get("/synctime",authenticated,function(req,res){
+    var item = new timeitem({
+      project_id:req.body.project
+      ,task_id:req.body.task
+      ,author:JSON.stringify(req.user)
+      ,starttime:req.body.start
+      ,duration:req.body.duration
+    });
+    item.save(function(newitem){
+      if(newitem == null){
+        res.json({});
+      }else{
+        res.json({id:newitem.id});
+      }
+    });
+  });
   app.get("/logtime",authenticated,function(req,res){
     projectitem.find(function(projects){
       taskitem.find(function(tasks){

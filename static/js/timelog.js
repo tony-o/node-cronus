@@ -18,6 +18,7 @@ var c = new (function(){
 var reparsetimers = function(){
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
+  var gg = JSON.parse(JSON.stringify(qq));
   var str = "";
   $("#opentimers #timerlist > div:not(:first-child)").remove();
   var template = $("#opentimers #timerlist > div").first();
@@ -40,6 +41,20 @@ var reparsetimers = function(){
         c.s("timers",JSON.stringify(qq));
         reparsetimers();
       });
+      $(buffer).find(".toggletimer").click(function(){
+        qq[q].running = !qq[q].running;
+        reparsetimers();
+      });
+      if(qq[q].id == -1){
+        $.ajax({
+          url:"/synctimer"
+          ,data:qq[q]
+          ,success:function(data,status,xhr){
+            gg[q].id = data.id;
+            c.s("timers",JSON.stringify(gg));
+          }
+        });
+      }
       $("#opentimers #timerlist").append(buffer);
     })(q,qq);
   }
