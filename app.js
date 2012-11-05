@@ -14,16 +14,24 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   }
 
   /* DEFINE DB MODELS */
-  var project = db.define("project",{
+  var projectitem = db.define("project",{
     "name":{"type":"string"}
+    ,"archived":{"type":"bool"}
   });
-  var timeitem = db.define("timeentry",{
+  var taskitem = db.define("task",{
+    "name":{"type":"string"}
+    ,"archived":{"type":"string"}
+  });
+  var timeitem = db.define("time",{
     "author":{"type":"string"}
     ,"starttime":{"type":"date"}
     ,"duration":{"type":"float"}
   });
-  timeitem.hasOne("project",project);
-  project.sync();
+  taskitem.hasOne("project",projectitem);
+  timeitem.hasOne("project",projectitem);
+  timeitem.hasOne("task",taskitem);
+  projectitem.sync();
+  taskitem.sync();
   timeitem.sync();
 
   passport.serializeUser(function(user,done){done(null,user);});
