@@ -8,7 +8,7 @@ $(document).ready(function(){
           $("form#projectform > .error").remove();
           $("form#projectform").prepend(data.projecterror);
         }else{
-          document.refresh();
+          document.location.reload(true);
         }
       }
     });
