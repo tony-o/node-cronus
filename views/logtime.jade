@@ -16,20 +16,23 @@ body
     form.form-inline#timeform
       p.localstoragewarning.error.hidden Warning: you cannot refresh once you start the timer
       input#timername.input-medium(name="timername",placeholder="Timer Name")
+      span  
       -var ddd = -1;
       select#projectname.input-medium(name="projectname",placeholder="Project Name")
         -for(var i in locals.projects)
           -if(locals.projects[i].archived){ continue; }
           -if(ddd == -1){ ddd = locals.projects[i].id; }
           option(value=locals.projects[i].id)!= locals.projects[i].name
-
+      span  
       select#taskname.input-medium(name="taskname",placeholder="Task Name")
         -for(var i in locals.tasks)
           -if(locals.tasks[i].archived){ continue; }
           -if(locals.tasks[i].project_id == ddd)
             option(value=locals.tasks[i].id)!= locals.tasks[i].name
-
+      span  
+      input#timertime.input-medium(name="timertime",placeholder="Time: Leave blank to start timer")
       button.btn.btn-primary#starttimer(type="submit") Start Timer
+      
     h2 Open Timers
     div#opentimers
     h2 Timer History
