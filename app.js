@@ -34,7 +34,7 @@ app.get("/auth/return",passport.authenticate("google",{
 });
 var authenticated = function(req,res,n){
   if(!req.isAuthenticated()){
-    res.redirect("/login");
+    res.redirect("/auth");
     return;
   }
   n();
