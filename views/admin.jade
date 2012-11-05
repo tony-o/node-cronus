@@ -21,7 +21,7 @@ body
       include i/errorbox 
       div.control-group
         label.control-label(for="projectname") New Project:           
-        div.controls: input#name.input-small(placeholder="Project Name",name="name")
+        div.controls: input#name.input-medium(placeholder="Project Name",name="name")
       div.control-group
         input#action(type="hidden",name="action",value="createproject")
         div.controls: button.btn.btn-primary#createproject(type="submit") Create Project
@@ -34,7 +34,7 @@ body
         include i/errorbox
         div.control-group
           label.control-label(for="taskname") New Task:
-          div.controls: input#name.input-small(placeholder="Task Name",name="name")
+          div.controls: input#name.input-medium(placeholder="Task Name",name="name")
         div.control-group
           label.control-label(for="projectname") Associated Project:
           div.controls: select#projectname.input-medium(name="projectname")
