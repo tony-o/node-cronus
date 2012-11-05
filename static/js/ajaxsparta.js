@@ -7,8 +7,9 @@ $(document).ready(function(){
         if(data && data.projecterror){
           $("form#projectform > .error").remove();
           $("form#projectform").prepend(data.projecterror);
+        }else{
+          document.refresh();
         }
-        alert(JSON.stringify(data,1,1));
       }
     });
   });
