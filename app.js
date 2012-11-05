@@ -19,7 +19,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   });
   var taskitem = db.define("task",{
     "name":{"type":"string"}
-    ,"archived":{"type":"string"}
+    ,"archived":{"type":"bool"}
   });
   var timeitem = db.define("time",{
     "author":{"type":"string"}
