@@ -5,15 +5,6 @@ var express = require("express");
 var passport = require("passport");
 var strategy = require("passport-google").Strategy;
 
-function twoDigits(d) {
-    if(0 <= d && d < 10) return "0" + d.toString();
-    if(-10 < d && d < 0) return "-0" + (-1*d).toString();
-    return d.toString();
-}
-Date.prototype.toMysqlFormat = function() {
-    return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
-};
-
 var app = express();
 var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+process.env.DBHOSTDB,function(success,db){
   if(!success){
@@ -91,7 +82,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
       project_id:req.body.project
       ,task_id:req.body.task
       ,author:JSON.stringify(req.user)
-      ,starttime:(new Date(req.body.start)).toMysqlFormat()
+      ,starttime:new Date(req.body.start)
       ,duration:req.body.duration
     });
     item.save(function(e,newitem){
