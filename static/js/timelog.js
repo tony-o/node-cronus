@@ -34,6 +34,7 @@ var reparsetimers = function(){
       $(buffer).find(".deletetimer").click(function(){
         qq.splice(q,1);
         c.s("timers",JSON.stringify(qq));
+        reparsetimers();
       });
       $("#opentimers").append(buffer);
     })(q,qq);
