@@ -85,9 +85,9 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     var item;
     var server = function(e,i){
       console.log("e:",e,"\ni:",i);
-      projectitem.find({},function(projects){
+      projectitem.find(function(projects){
         console.log("projects:",projects);
-        taskitem.find({},function(items){
+        taskitem.find(function(items){
           res.render("admin",{locals:{
             title:"Admin"
             ,user:req.user
