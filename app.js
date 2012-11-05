@@ -77,7 +77,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
       ,user:req.user
     }});
   });
-  app.get("/synctimer",authenticated,function(req,res){
+  app.post("/synctimer",authenticated,function(req,res){
     var item = new timeitem({
       project_id:req.body.project
       ,task_id:req.body.task
