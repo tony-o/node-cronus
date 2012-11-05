@@ -78,11 +78,17 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     }});
   });
   app.get("/logtime",authenticated,function(req,res){
-    res.render("logtime",{locals:{
-      title:"Log Time"
-      ,user:req.user
-      ,scripts:["/js/jquery.cookie.js","/js/timelog.js"]
-    }});
+    projectitems.find(function(projects){
+      taskitems.find(function(tasks){
+        res.render("logtime",{locals:{
+          title:"Log Time"
+          ,user:req.user
+          ,projects:projects
+          ,tasks:tasks
+          ,scripts:["/js/jquery.cookie.js","/js/timelog.js"]
+        }});
+      });
+    });
   });
   app.get("/admin",authenticated,function(req,res){
     var item;
