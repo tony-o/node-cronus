@@ -1,4 +1,4 @@
-var c = function(){ return new (function(){
+var c = new (function(){
   this.g = function(key){
     return $.cookie(key);
   };
@@ -10,7 +10,7 @@ var c = function(){ return new (function(){
   this.r = function(key){
     $.removeCookie(key);
   };
-})(); };
+})();
 
 $("#timeform").submit(function(e){e.preventDefault();return false;});
 
