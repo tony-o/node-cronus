@@ -16,6 +16,7 @@ body
       form.form-inline
         label(for="projectname") New Project:           
           input#projectname(placeholder="Project Name",name="projectname")
+        input#action(type="hidden",name="action",value="createproject")
         button.btn(type="submit") Create Project
       -for(var project in locals.projects)
         div(class=locals.projects[project].archive?"archived":"")!= locals.projects[project].name
