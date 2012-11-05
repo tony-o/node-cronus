@@ -21,7 +21,7 @@ body
       input#action(type="hidden",name="action",value="createproject")
       button.btn(type="submit") Create Project
     -for(var project in locals.projects)
-      div(class=locals.projects[project].archive?"archived":"")!= locals.projects[project].name
+      h4(class=locals.projects[project].archive?"archived":"")!= locals.projects[project].name
     h2 Tasks
       ul
         -for(var task in locals.tasks)

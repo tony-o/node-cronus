@@ -84,7 +84,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   app.get("/admin",authenticated,function(req,res){
     var item;
     var server = function(e,i){
-      console.log("e:",e,"\ni:",i);
+      console.log("e:",JSON.stringify(e,1,1),"\ni:",i);
       projectitem.find(function(projects){
         console.log("projects:",projects);
         taskitem.find(function(items){
@@ -95,7 +95,6 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
             ,items:items
             ,projecterror:(req.query["action"]=="createproject"&&e?e:null)
             ,taskerror:(req.query["action"]=="createtask"&&e?e:null)
-
           }});
         });
       });
@@ -103,7 +102,6 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     
     switch(req.query["action"]){
       case "createproject":
-        console.log("creating project:",req.query["name"]);
         item = new projectitem({"name":req.query["name"]});
         item.save(server);
         break;
