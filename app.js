@@ -81,7 +81,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     res.render("logtime",{locals:{
       title:"Log Time"
       ,user:req.user
-      ,scripts:["/js/timelog.js"]
+      ,scripts:["/js/jquery.cookie.js","/js/timelog.js"]
     }});
   });
   app.get("/admin",authenticated,function(req,res){
