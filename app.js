@@ -99,6 +99,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
           res.render("admin",{locals:{
             title:"Admin"
             ,user:req.user
+            ,scripts:["/js/ajaxsparta.js"]
             ,projects:projects
             ,items:items
             ,projecterror:(req.query["action"]=="createproject"&&e?e:null)
