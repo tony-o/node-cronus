@@ -5,7 +5,7 @@ var passport = require("passport");
 var strategy = require("passport-google").Strategy;
 
 var app = express();
-var db = orm.connect("mysql://bingowashisnamo:NKQWWWQbzQYyj6RG@odellam.com/timekeeping",function(success,db){
+var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+process.env.DBHOSTDB,function(success,db){
   if(!success){
     console.error("Could not connect to db");
     return;
