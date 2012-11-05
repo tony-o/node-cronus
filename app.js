@@ -82,18 +82,33 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     }});
   });
   app.get("/admin",authenticated,function(req,res){
-    console.log("REQUEST",JSON.stringify(req.query,1,1));
-    projectitem.find({},function(projects){
-      console.log("projects:",projects);
-      taskitem.find({},function(items){
-        res.render("admin",{locals:{
-          title:"Admin"
-          ,user:req.user
-          ,projects:projects
-          ,items:items
-        }});
+    var item;
+    var server = function(e,i){
+      projectitem.find({},function(projects){
+        console.log("projects:",projects);
+        taskitem.find({},function(items){
+          res.render("admin",{locals:{
+            title:"Admin"
+            ,user:req.user
+            ,projects:projects
+            ,items:items
+          }});
+        });
       });
-    });
+    };
+    
+    switch(req.query["action"]){
+      case "createproject":
+        item = new projectitem({"name":req.query["name"]});
+        item.save(server);
+        break;
+      case "createtask":
+        server(null,null);
+        break;
+      default:
+        server(null,null);
+    };
+    
   });
   var port = process.env.PORT || 5000;
   app.listen(port);
