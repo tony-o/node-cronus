@@ -128,7 +128,8 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         });
         break;
       case "createtask":
-        server(null,null);
+        item = new taskitem({"name":req.query["name"],"project_id":req.query["projectname"]});
+        item.save(server);
         break;
       default:
         server(null,null);
