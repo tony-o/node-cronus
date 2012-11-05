@@ -139,7 +139,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
           }
           p[0].archived = (req.query["action"]=="archivetask"?1:0);
           p[0].save(server);
-        }
+        });
         break;
       default:
         server(null,null);
