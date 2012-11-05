@@ -15,7 +15,7 @@ body
     h2 Projects
       form.form-inline
         label(for="projectname") New Project:           
-          input#projectname(placeholder="Project Name",name="projectname")
+          input#name(placeholder="Project Name",name="name")
         input#action(type="hidden",name="action",value="createproject")
         button.btn(type="submit") Create Project
       -for(var project in locals.projects)
