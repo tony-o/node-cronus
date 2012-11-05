@@ -15,7 +15,8 @@ body
     h2 Projects
     div#projectlist
       -for(var project in locals.projects)
-        h4(class="indent2 "+(locals.projects[project].archived?"archived":""))!= locals.projects[project].name + "<a href=\"/admin?action=" + (locals.projects[project].archived?"reviveproject":"archiveproject") + "&name=" + locals.projects[project].name + "\" class=\"small\">"+ (locals.projects[project].archived?"resurrect":"bury") +"</a>";
+        h4(class="indent2 "+(locals.projects[project].archived?"archived":""))!= locals.projects[project].name
+          a(href="/admin?action=" + (locals.projects[project].archived?"reviveproject":"archiveproject") + "&name=" + locals.projects[project].name)!= locals.projects[project].archived?"resurrect":"bury")
     h3 Create Project:
     form.form-horizontal#projectform
       include i/errorbox 
@@ -31,6 +32,8 @@ body
         -for(var project in locals.projects)
           -if(locals.projects[project].id == locals.tasks[task].project_id)
             h4(class="indent2 "+(locals.tasks[task].archived || locals.projects[project].archived?"archived":""))!= locals.projects[project].name + ": " + locals.tasks[task].name
+              -if(!locals.projects[project].archived)
+                a(href="/admin?action=" + (locals.tasks[task].archived?"revivetask":"archivetask") + "&name=" + locals.tasks[task].id)!= locals.tasks[task].archived?"resurrect":"bury")
     h3 Create Task:
     form.form-horizontal#taskform
       include i/errorbox
@@ -41,7 +44,8 @@ body
         label.control-label(for="projectname") Associated Project:
         div.controls: select#projectname.input-medium(name="projectname")
           -for(var project in locals.projects)
-            option(value=locals.projects[project].id)!= locals.projects[project].name
+            -if(!locals.projects[project].archived)
+              option(value=locals.projects[project].id)!= locals.projects[project].name
       div.control-group
         input#action(type="hidden",name="action",value="createtask")
         div.controls: button.btn.btn-primary#createtask(type="submit") Create Task
