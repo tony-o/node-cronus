@@ -14,6 +14,9 @@ body
     h1 Time Tracker;
     h2 Track Time
     form#timeform
-      -if(!("localStorage" in window && window["localStorage"] !== null))
-        p.error Warning: you cannot refresh once you start the timer
+      p.localstoragewarning.error.hidden Warning: you cannot refresh once you start the timer
+      script
+        if(!("localStorage" in window && window["localStorage"] !== null)){
+          $("#timeform > p.localstoragewarning").show();
+        }
   include i/feeter 
