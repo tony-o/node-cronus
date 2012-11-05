@@ -48,8 +48,9 @@ var reparsetimers = function(){
       if(qq[q].id == -1){
         $.ajax({
           url:"/synctimer"
-          ,method:"POST"
-          ,data:qq[q]
+          ,type:"POST"
+          ,contentType:"application/json; charset=utf-8"
+          ,data:JSON.stringify(qq[q])
           ,success:function(data,status,xhr){
             gg[q].id = (data.id) ? data.id : -1;
             c.s("timers",JSON.stringify(gg));
