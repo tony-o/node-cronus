@@ -18,18 +18,20 @@ var c = new (function(){
 var reparsetimers = function(){
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
-  $("#opentimers").text(JSON.stringify(qq,1,1));  
+  var str = "";
+  for(var q in qq){ str += JSON.stringify(qq[q]) + "<br/>"; }
+  $("#opentimers").html(str);  
 };
 
 $("#timeform").submit(function(e){e.preventDefault();return false;});
-$("#starttimer").click(function(){
+$("#starttimer, #savetimer").click(function(){
   var arr = c.g("timers");
   arr = arr instanceof Array ? arr : []; 
-  arr.push({title:$("#timername").val(),project:$("#projectname").val(),task:$("#taskname").val(),start:new Date()});
+  arr.push({title:$("#timername").val(),project:$("#projectname").val(),task:$("#taskname").val(),start:new Date(),notes:$("#timernotes").val(),id:-1,running:$(this)==$("#savetimer")?false:true});
   c.s("timers",JSON.stringify(arr));
   reparsetimers();
 });
-$("ul.nav li a").click(function(){
+$(".container ul.nav li a").click(function(){
   var dd = ["timerhistory","opentimers","tracktime"];
   for(var d in dd){ 
     $("#" + dd[d]).hide();
@@ -38,4 +40,4 @@ $("ul.nav li a").click(function(){
     }
   }
 });
-$("ul.nav li a").first().click();
+$(".container ul.nav li a").first().click();
