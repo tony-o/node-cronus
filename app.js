@@ -1,3 +1,4 @@
+var fs = require("fs");
 var orm = require("orm");
 var jade = require("jade");
 var express = require("express");
