@@ -16,11 +16,11 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   var projectnamevalidation = function(val,n){return !val||val.length<3?n("too-short"):n();};
   var projectitem = db.define("project",{
     "name":{"type":"string","validations":[orm.validators.unique(),projectnamevalidation]}
-    ,"archived":{"type":"bool"}
+    ,"archived":{"type":"int"}
   });
   var taskitem = db.define("task",{
     "name":{"type":"string"}
-    ,"archived":{"type":"bool"}
+    ,"archived":{"type":"int"}
   });
   var timeitem = db.define("time",{
     "author":{"type":"string"}
