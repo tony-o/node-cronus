@@ -76,9 +76,24 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     }});
   });
   app.get("/logtime",authenticated,function(req,res){
-    res.render("logtime",{locals:{title:"Log Time"}});
+    res.render("logtime",{locals:{
+      title:"Log Time"
+      ,user:req.user
+    }});
   });
-
+  app.get("/admin",authenticated,function(req,res){
+    projectitem.find({},function(projects){
+      console.log("projects:",projects);
+      taskitem.find({},function(items){
+        res.render("admin",{locals:{
+          title:"Admin"
+          ,user:req.user
+          ,projects:projects
+          ,items:items
+        }});
+      });
+    });
+  });
   var port = process.env.PORT || 5000;
   app.listen(port);
 
