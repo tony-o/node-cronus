@@ -4,7 +4,7 @@ $(document).ready(function(){
     $.ajax({
       url:"/admin?action=createproject&name="+$("#projectform").find("#name").val()+"&json=true"
       ,success:function(data,status,xhr){
-        alert(data);
+        alert(JSON.stringify(data,1,1));
       }
     });
   });
