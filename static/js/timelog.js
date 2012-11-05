@@ -15,6 +15,8 @@ var c = new (function(){
 $("#timeform").submit(function(e){e.preventDefault();return false;});
 
 $("#starttimer").click(function(){
-  c.s("timers",(JSON.parse(c.g("timers"))||[]).push({title:$("#timername").val(),start:new Date()}));
+  var arr = (JSON.parse(c.g("timers"))||[]);
+  arr.push({title:$("#timername").val(),start:new Date()});
+  c.s("timers",arr);
   alert(c.g("timers"));
 });
