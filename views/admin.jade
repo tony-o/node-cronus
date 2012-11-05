@@ -14,7 +14,7 @@ body
     h1 Adminning?  Sweeeeeet
     h2 Projects
     -for(var project in locals.projects)
-      h4(class="indent2"+(locals.projects[project].archive?"archived":""))!= locals.projects[project].name + "<a href=\"/admin?action=archiveproject&name=" + locals.projects[project].name + "\" class=\"small\">bury</a>";
+      h4(class="indent2"+(locals.projects[project].archived?"archived":""))!= locals.projects[project].name + "<a href=\"/admin?action=archiveproject&name=" + locals.projects[project].name + "\" class=\"small\">bury</a>";
     form.form-inline#projectform
       include i/errorbox 
       div.control-group
@@ -26,7 +26,7 @@ body
     h2 Tasks
       ul
         -for(var task in locals.tasks)
-          li(class=locals.tasks[task].archive?"archived":"")!= locals.tasks[task].name
+          li(class=locals.tasks[task].archived?"archived":"")!= locals.tasks[task].name
 
   include i/feeter
 
