@@ -14,6 +14,10 @@ body
     h1 Adminning?  Sweeeeeet
     h2 Projects
       ul
+        li
+          div.newproject
+            input#projectname(placeholder="Project Name",name="projectname")
+            label(for="projectname") New Project:           
         -for(var project in locals.projects)
           li(class=locals.projects[project].archive?"archived":"")!= locals.projects[project].name
     h2 Tasks
