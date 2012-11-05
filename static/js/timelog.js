@@ -19,8 +19,8 @@ var reparsetimers = function(){
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
   var str = "";
-  $("#opentimers > div:gt(0)").remove();
-  var template = $("#opentimers > div").first();
+  $("#opentimers #timerlist > div:gt(0)").remove();
+  var template = $("#opentimers #timerlist > div").first();
   for(var q in qq){ 
     var buffer = $(template).clone();
     $(buffer).find(".name").text(qq[q].title);
