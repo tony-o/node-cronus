@@ -131,6 +131,16 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         item = new taskitem({"name":req.query["name"],"project_id":req.query["projectname"]});
         item.save(server);
         break;
+      case "archivetask": case "revivetask":
+        taskitem.find({"id":req.query["name"]},function(p){
+          if(p==null){
+            server("not-found",null);
+            return;
+          }
+          p[0].archived = (req.query["action"]=="archivetask"?1:0);
+          p[0].save(server);
+        }
+        break;
       default:
         server(null,null);
     };
