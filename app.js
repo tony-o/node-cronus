@@ -121,8 +121,8 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
             server("not-found",null);
             return;
           }
-          p.archived = 1;
-          p.save(server);
+          p[0].archived = 1;
+          p[0].save(server);
         });
         break;
       case "createtask":
