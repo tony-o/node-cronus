@@ -1,0 +1,7 @@
+script(src="/js/jquery.js")
+-if(locals.scripts && typeof locals.scripts == "object")
+  -for(var s in locals.scripts)
+    script(src=locals.scripts[s])
+-if(locals.stylesheets && typeof locals.stylesheets == "object")
+  -for(var s in locals.stylesheets)
+    script(src=locals.stylesheets[s])

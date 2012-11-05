@@ -29,5 +29,5 @@ body
         -for(var task in locals.tasks)
           li(class=locals.tasks[task].archive?"archived":"")!= locals.tasks[task].name
 
-  script(src="/js/jquery.js")
-  
+  include i/feeter
+
