@@ -1,6 +1,10 @@
 var c = new (function(){
   this.g = function(key){
-    return $.cookie(key);
+    var val = $.cookie(key);
+    try{
+      val = JSON.parse(val);
+    }catch(e){ }
+    return val;
   };
 
   this.s = function(key,value){
@@ -11,16 +15,17 @@ var c = new (function(){
     $.removeCookie(key);
   };
 })();
+var reparsetimers = function(){
+  var qq = c.g("timers");
+  qq = qq instanceof Array ? qq : [];
+  $("#opentimers").text(JSON.stringify(qq,1,1));  
+};
 
 $("#timeform").submit(function(e){e.preventDefault();return false;});
-
 $("#starttimer").click(function(){
-  var arr = [];
-  try{
-    arr = JSON.parse(c.g("timers"));
-  }catch(e){ }
-  if(!(arr instanceof Array)){ arr = []; }
+  var arr = c.g("timers");
+  arr = arr instanceof Array ? arr : []; 
   arr.push({title:$("#timername").val(),project:$("#projectname").val(),task:$("#taskname").val(),start:new Date()});
   c.s("timers",JSON.stringify(arr));
-  alert(c.g("timers"));
+  reparsetimers();
 });

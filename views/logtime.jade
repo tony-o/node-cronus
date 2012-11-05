@@ -29,5 +29,9 @@ body
           -if(locals.tasks[i].project_id == ddd)
             option(value=locals.tasks[i].id)!= locals.tasks[i].name
 
-      button.btn.btn-primary#starttimer(type="submit") Start Timer 
+      button.btn.btn-primary#starttimer(type="submit") Start Timer
+    h2 Open Timers
+    div#timers
+    h2 Timer History
+    div#history 
   include i/feeter 
