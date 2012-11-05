@@ -11,6 +11,18 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     return;
   }
 
+  /* DEFINE DB MODELS */
+  var project = db.define("project",{
+    "name":{"type":"string"}
+  });
+  var timeitem = db.define("timeentry",{
+    "author":{"type":"string"}
+    ,"starttime":{"type":"date"}
+    ,"duration":{"type":"float"}
+  });
+  timeitem.hasOne("project",project);
+  project.sync();
+  timeitem.sync();
 
   passport.serializeUser(function(user,done){done(null,user);});
   passport.deserializeUser(function(user,done){done(null,user);});
