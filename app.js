@@ -120,7 +120,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
       case "archiveproject": case "reviveproject":
         projectitem.find({"name":req.query["name"]},function(p){
           if(p == null){
-            server("not-found",null);
+            server({"value":req.query["name"],"msg":"not-found"},null);
             return;
           }
           p[0].archived = (req.query["action"]=="archiveproject"?1:0);
@@ -134,13 +134,13 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
             item.save(server);
             return;
           }
-          server("task name/project: not-unique",null);
+          server({"value":"","msg":"task name/project: not-unique"},null);
         });
         break;
       case "archivetask": case "revivetask":
         taskitem.find({"id":req.query["name"]},function(p){
           if(p==null){
-            server("not-found",null);
+            server({"value":req.query["name"],"msg":"not-found"},null);
             return;
           }
           p[0].archived = (req.query["action"]=="archivetask"?1:0);
