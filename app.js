@@ -6,7 +6,7 @@ var strategy = require("passport-google").Strategy;
 var app = express();
 
 passport.serializeUser(function(user,done){done(null,user);});
-passport.deserializeUser(function(user,d){done(null,user);});
+passport.deserializeUser(function(user,done){done(null,user);});
 passport.use(new strategy({
     "returnURL":"http://timekeeping.odellam.com/auth/return"
     ,"realm":"http://timekeeping.odellam.com"
