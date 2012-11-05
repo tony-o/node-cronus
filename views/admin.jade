@@ -19,9 +19,9 @@ body
       h4(class=locals.projects[project].archive?"archived":"")!= locals.projects[project].name
     form.form-inline
       label(for="projectname") New Project:           
-        input#name(placeholder="Project Name",name="name")
+        input#name.input-small(placeholder="Project Name",name="name")
       input#action(type="hidden",name="action",value="createproject")
-      button.btn(type="submit") Create Project
+      button.btn.btn-primary(type="submit") Create Project
     h2 Tasks
       ul
         -for(var task in locals.tasks)
