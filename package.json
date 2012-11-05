@@ -1,0 +1,13 @@
+{
+  "name":"node-cronus"
+  ,"version":"0.0.1"
+  ,"dependencies":{
+    "express":""
+    ,"passport":""
+    ,"passport-google":""
+  }
+  ,"engines":{
+    "node":"0.8.x"
+    ,"npm":"1.1.x"
+  }
+}
