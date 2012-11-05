@@ -13,8 +13,7 @@ body
   div.container
     h1 Adminning?  Sweeeeeet
     h2 Projects
-    -if(locals.projecterror)
-      h3!= "Error: '" + locals.projecterror.value + "', " + locals.projecterror.msg
+    include i/errorbox 
     -for(var project in locals.projects)
       h4(class=locals.projects[project].archive?"archived":"")!= locals.projects[project].name
     form.form-inline#projectform
