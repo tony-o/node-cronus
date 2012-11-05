@@ -115,6 +115,12 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         item = new projectitem({"name":req.query["name"]});
         item.save(server);
         break;
+      case "archiveproject":
+        projectitem.find({"name":req.query["name"]},function(e,p){
+          p.archived = 1;
+          p.save(server);
+        });
+        break;
       case "createtask":
         server(null,null);
         break;
