@@ -116,8 +116,11 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         item.save(server);
         break;
       case "archiveproject":
-        projectitem.find({"name":req.query["name"]},function(e,p){
-          console.log("e",JSON.stringify(e,1,1),"\np",JSON.stringify(p,1,1));
+        projectitem.find({"name":req.query["name"]},function(p){
+          if(p == null){
+            server("not-found",null);
+            return;
+          }
           p.archived = 1;
           p.save(server);
         });
