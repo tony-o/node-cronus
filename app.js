@@ -13,5 +13,34 @@ passport.use(new strategy({
     pro.id = id;
     return d(null,pro);
 }));
+app.configure(function(){
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.session({"secret":"a8er9a0rrr"}));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(app.router);
+  app.use(express.static(__dirname + "/html"));
+  app.set("views",__dirname + "/views");
+  app.set("view engine","jade");
+});
 
-app.listen(80);
+app.get("/auth",passport.authenticate("google"));
+app.get("/auth/return",passport.authenticate("google",{
+    "failureRedirect":"/login"
+  }),function(req,res){
+    res.redirect("/account");
+});
+var authenticated = function(req,res,n){
+  if(!req.isAuthenticated()){
+    res.redirect("/login");
+    return;
+  }
+  n();
+};
+app.get("/",function(req,res){
+  res.redirect("/auth");
+});
+
+var port = process.env.PORT || 5000;
+app.listen(port);
