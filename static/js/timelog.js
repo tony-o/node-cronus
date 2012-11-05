@@ -29,3 +29,13 @@ $("#starttimer").click(function(){
   c.s("timers",JSON.stringify(arr));
   reparsetimers();
 });
+$("ul li.nav a").click(function(){
+  var dd = ["timerhistory","opentimers","tracktime"];
+  for(var d in dd){ 
+    $("#" + dd[d]).hide();
+    if($(this).attr("href").toString().substr(1).toLowerCase() == dd[d]){
+      $("#" + dd[d]).show();
+    }
+  }
+});
+$("ul li.nav a").first().click();
