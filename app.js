@@ -134,7 +134,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
             item.save(server);
             return;
           }
-          server({"value":"","msg":"task name/project: not-unique"},null);
+          server({"value":req.query["name"],"msg":"project -> task name: not-unique"},null);
         });
         break;
       case "archivetask": case "revivetask":

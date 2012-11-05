@@ -20,7 +20,6 @@ $(document).ready(function(){
     $.ajax({
       url:"/admin?action=createtask&name="+$("#taskform").find("#name").val()+"&projectname="+$("#projectname").val()+"&json=true"
       ,success:function(data,status,xhr){
-        alert(data);
         if(data && data.taskerror){
           $("form#taskform > .error").remove();
           $("form#taskform").prepend(data.taskerror);
