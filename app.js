@@ -89,9 +89,9 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
       
       projectitem.find(function(projects){
         console.log("projects:",projects);
-        taskitem.find(function(items){
+        taskitem.find(function(tasks){
           projects && projects.length && projects.sort(function(a,b){return a.name > b.name;});
-          items && items.length && items.sort(function(a,b){return a.project > b.project;});
+          tasks && tasks.length && tasks.sort(function(a,b){return a.project > b.project;});
           if(req.query["json"]){
             res.json({
               projecterror:jade.compile(fs.readFileSync(__dirname + "/views/i/errorbox.jade"),{})({locals:(req.query["action"]=="createproject"&&e?{error:e}:null)})
@@ -104,7 +104,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
             ,user:req.user
             ,scripts:["/js/ajaxsparta.js"]
             ,projects:projects
-            ,items:items
+            ,tasks:tasks
             ,projecterror:(req.query["action"]=="createproject"&&e?e:null)
             ,taskerror:(req.query["action"]=="createtask"&&e?e:null)
           }});
