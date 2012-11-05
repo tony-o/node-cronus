@@ -14,7 +14,7 @@ body
     h1 Adminning?  Sweeeeeet
     h2 Projects
     -if(locals.projecterror)
-      h3!= locals.projecterror
+      h3!= "Error: '" + locals.projecterror.value + "', " + locals.projecterror.msg
     form.form-inline
       label(for="projectname") New Project:           
         input#name(placeholder="Project Name",name="name")
