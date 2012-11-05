@@ -21,20 +21,22 @@ var reparsetimers = function(){
   var str = "";
   $("#opentimers #timerlist > div:gt(0)").remove();
   var template = $("#opentimers #timerlist > div").first();
-  for(var q in qq){ 
-    var buffer = $(template).clone();
-    $(buffer).find(".name").text(qq[q].title);
-    $(buffer).find(".project").text(qq[q].project);
-    $(buffer).find(".task").text(qq[q].task);
-    $(buffer).find(".time").text(Math.random());
-    $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
-    $(buffer).find(".index").text(q);
-    $(buffer).removeClass("hidden");
-    $(buffer).find(".deletetimer").click(function(){
-      qq.splice(q,1);
-      c.s("timers",JSON.stringify(qq));
-    });
-    $("#opentimers").append(buffer);
+  for(var q in qq){
+    (function(q,qq){ 
+      var buffer = $(template).clone();
+      $(buffer).find(".name").text(qq[q].title);
+      $(buffer).find(".project").text(qq[q].project);
+      $(buffer).find(".task").text(qq[q].task);
+      $(buffer).find(".time").text(Math.random());
+      $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
+      $(buffer).find(".index").text(q);
+      $(buffer).removeClass("hidden");
+      $(buffer).find(".deletetimer").click(function(){
+        qq.splice(q,1);
+        c.s("timers",JSON.stringify(qq));
+      });
+      $("#opentimers").append(buffer);
+    })(q,qq);
   }
 };
 $("#timeform").submit(function(e){e.preventDefault();return false;});
