@@ -1,3 +1,4 @@
+var jade = require("jade");
 var express = require("express");
 var passport = require("passport");
 var strategy = require("passport-google").Strategy;
@@ -40,6 +41,12 @@ var authenticated = function(req,res,n){
 };
 app.get("/",function(req,res){
   res.redirect("/auth");
+});
+app.get("/account",function(req,res){
+  res.render("account",{locals:{title:"Account Info"}});
+});
+app.get("/logtime",function(req,res){
+  res.render("logtime",{locals:{title:"Log Time"}});
 });
 
 var port = process.env.PORT || 5000;
