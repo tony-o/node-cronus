@@ -19,7 +19,7 @@ var reparsetimers = function(){
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
   var str = "";
-  $("#opentimers #timerlist > div:gt(0)").remove();
+  $("#opentimers #timerlist > div:not(:first-child)").remove();
   var template = $("#opentimers #timerlist > div").first();
   for(var q in qq){
     (function(q,qq){ 
@@ -36,7 +36,7 @@ var reparsetimers = function(){
         c.s("timers",JSON.stringify(qq));
         reparsetimers();
       });
-      $("#opentimers").append(buffer);
+      $("#opentimers #timerlist").append(buffer);
     })(q,qq);
   }
 };
