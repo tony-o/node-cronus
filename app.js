@@ -78,8 +78,8 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     }});
   });
   app.get("/logtime",authenticated,function(req,res){
-    projectitems.find(function(projects){
-      taskitems.find(function(tasks){
+    projectitem.find(function(projects){
+      taskitem.find(function(tasks){
         res.render("logtime",{locals:{
           title:"Log Time"
           ,user:req.user
