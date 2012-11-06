@@ -33,7 +33,9 @@ var reparsetimers = function(){
         dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
       }
       qq[q].duration = dd214;
-      $(buffer).find(".time").text(Math.round(dd214*1000)/1000);
+      dd214 = Math.round(dd214*1000)/1000;
+      dd214 = dd214 + (dd214.toString().indexOf(".") == -1 ? ".000" : Array(3 - dd214.toString().substr(dd214.toString.indexOf(".")+1).length).join("0"));
+      $(buffer).find(".time").text(dd214 + (Array(dd214.toString().length);
       $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
       $(buffer).find(".index").text(q);
       $(buffer).removeClass("hidden");
