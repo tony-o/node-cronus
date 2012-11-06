@@ -87,4 +87,18 @@ $(".container ul.nav li a").first().click();
 setInterval(function(){
   reparsetimers();
 },60000);
+
+setInterval(function(){
+  var qq = c.g("timers");
+  qq = qq instanceof Array ? qq : [];
+  var template = $("#opentimers #timerlist > div:gt(0)").each(function(){
+    try{
+      var index = parseInt($(this).find(".index").text());
+      if(!qq[index].running){ return; }
+      var dd214 = parseFloat(qq[index].duration) || 0;
+      dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
+      $(this).find(".time").text(Math.round(dd214*1000)/1000);
+    }catch(e){ }
+  });
+},100);
 reparsetimers();
