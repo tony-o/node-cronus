@@ -15,7 +15,10 @@ var c = new (function(){
     $.removeCookie(key);
   };
 })();
+var editing = 0;
 var reparsetimers = function(){
+  if(editing){return;}
+  editing = 1;
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
   var gg = JSON.parse(JSON.stringify(qq));
@@ -40,6 +43,7 @@ var reparsetimers = function(){
       $(buffer).find(".index").text(q);
       $(buffer).removeClass("hidden");
       $(buffer).find(".time").dblclick(function(){
+        editing = 1;
         var self = $(this);
         var val = $(self).text();
         $(self).text("");
@@ -50,6 +54,7 @@ var reparsetimers = function(){
           gg[q].duration = newval;
           gg[q].start = (new Date()).toString();
           c.s("timers",JSON.stringify(gg));
+          editing = 0;
           reparsetimers();
         });
       });
@@ -101,6 +106,7 @@ var reparsetimers = function(){
       $("#opentimers #timerlist").append(buffer);
     })(q,qq);
   }
+  editing = 0;
 };
 $("#timeform").submit(function(e){e.preventDefault();return false;});
 $("#starttimer, #savetimer").click(function(){
