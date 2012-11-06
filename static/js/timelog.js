@@ -37,6 +37,20 @@ var reparsetimers = function(){
       $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
       $(buffer).find(".index").text(q);
       $(buffer).removeClass("hidden");
+      $(buffer).find(".time").dblclick(function(){
+        var self = $(this);
+        var val = $(self).text();
+        $(self).text("");
+        $(self).append($("<input type=\"text\" value=\""+val+"\" id=\"editingtime\" />"));
+        $(self).find("#editingtime").blur(function(){
+          var newval = parseFloat($(this).val()) || val;
+          $(self).text(newval);
+          gg[q].duration = newval;
+          gg[q].start = (new Date()).toString();
+          c.s("timers",JSON.stringify(gg));
+          reparsetimers();
+        });
+      });
       $(buffer).find(".deletetimer").click(function(){
         gg.splice(q,1);
         c.s("timers",JSON.stringify(gg));
