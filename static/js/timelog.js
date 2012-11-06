@@ -54,14 +54,19 @@ var reparsetimers = function(){
         c.s("timers",JSON.stringify(gg));
         reparsetimers();
       });
-      var sync = function(){
+      var sync = function(remove){
+        remove = remove ? true : false;
         $.ajax({
           url:"/synctimer"
           ,type:"POST"
           ,contentType:"application/json; charset=utf-8"
           ,data:JSON.stringify(gg[q])
           ,success:function(data,status,xhr){
-            gg[q].id = (data.id) ? data.id : -1;
+            if(remove){
+              gg.splice(q,1);
+            }else{
+              gg[q].id = (data.id) ? data.id : -1;
+            }
             c.s("timers",JSON.stringify(gg));
           }
         });
