@@ -101,7 +101,13 @@ $("#starttimer, #savetimer").click(function(){
   $("#opentimers").click();
 });
 $("#projectname").change(function(){
-  console.log($(this).val());
+  $("#taskname option").remove();
+  var id = $(this).val();
+  $("#tasktoproject > peterpan").each(function(){
+    if($(this).find(".projectid").text() == id){
+      $("#taskname").append($("<option value=\"" + $(this).find(".taskid").text() + "\">" + $(this).find(".taskname").text() + "</option>"));
+    }
+  });
 });
 $(".container ul.nav li a").click(function(){
   var dd = ["timerhistory","opentimers","tracktime"];
