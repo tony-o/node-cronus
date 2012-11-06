@@ -43,7 +43,12 @@ var reparsetimers = function(){
         reparsetimers();
       });
       $(buffer).find(".toggletimer").click(function(){
+        var dd214 = parseFloat(qq[q].duration) || 0;
+        if(qq[q].running){
+          dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
+        }
         gg[q].running = !gg[q].running;
+        gg[q].duration = dd214;
         c.s("timers",JSON.stringify(gg));
         reparsetimers();
       });
