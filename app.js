@@ -26,6 +26,8 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     "author":{"type":"string"}
     ,"starttime":{"type":"date"}
     ,"duration":{"type":"float"}
+    ,"status":{"type":"string"}
+    ,"running":{"type":"int"}
   });
   taskitem.hasOne("project",projectitem);
   timeitem.hasOne("project",projectitem);
@@ -78,20 +80,37 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     }});
   });
   app.post("/synctimer",authenticated,function(req,res){
-    var item = new timeitem({
-      project_id:req.body.project
-      ,task_id:req.body.task
-      ,author:JSON.stringify(req.user)
-      ,starttime:new Date(req.body.start)
-      ,duration:req.body.duration
-    });
-    item.save(function(e,newitem){
+    var scb = function(e,newitem){
       if(e != null){
         res.json({e:e,data:req.body});
       }else{
         res.json({id:newitem.id});
       }
-    });
+    };
+    if(req.body.id == -1){
+      var item = new timeitem({
+        project_id:req.body.project
+        ,task_id:req.body.task
+        ,author:JSON.stringify(req.user)
+        ,starttime:new Date(req.body.start)
+        ,duration:req.body.duration
+      });
+      item.save(scb);
+    }else{
+      timeitem.find({id:req.body.id,status:"open"},function(item){
+        if(!item){
+          scb("not-found",null);
+          return;
+        }
+        item.project_id = req.body.project;
+        item.task_id = req.body.task;
+        item.author = JSON.stringify(req.user);
+        item.starttime = new Date(req.body.start);
+        item.duration = req.body.duration;
+        item.running = req.body.running;
+        item.save(scb);
+      });
+    }
   });
   app.get("/logtime",authenticated,function(req,res){
     projectitem.find(function(projects){
