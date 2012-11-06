@@ -97,6 +97,7 @@ setInterval(function(){
       if(!qq[index].running){ return; }
       var dd214 = parseFloat(qq[index].duration) || 0;
       dd214 += Math.floor(Math.abs(new Date() - new Date(qq[index].start))/1000/60)/60;
+      console.log("index: " + dd214);
       $(this).find(".time").text(Math.round(dd214*1000)/1000);
     }catch(e){ }
   });
