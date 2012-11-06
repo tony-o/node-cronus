@@ -80,9 +80,9 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     }});
   });
   app.post("/synctimer",authenticated,function(req,res){
-    console.log("SNACKS\n\n",JSON.stringify(req.body,1,1),"\n\n");
+    console.log("SNACKS",JSON.stringify(req.body));
     var scb = function(e,newitem){
-      console.log("SAVING\n\n",JSON.stringify(newitem,1,1),"\n\n");
+      console.log("SAVING",JSON.stringify(newitem));
       if(e != null){
         res.json({e:e,data:req.body});
       }else{
