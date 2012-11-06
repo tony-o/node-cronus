@@ -107,7 +107,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         item.author = JSON.stringify(req.user);
         item.starttime = new Date(req.body.start);
         item.duration = req.body.duration;
-        item.running = req.body.running;
+        item.running = req.body.running == true ? 1 : 0;
         item.save(scb);
       });
     }
