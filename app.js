@@ -108,14 +108,14 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
           return;
         }
         console.log("sAVER");
-        item.project_id = req.body.project;
-        item.task_id = req.body.task;
-        item.author = JSON.stringify(req.user);
-        item.starttime = new Date(req.body.start);
-        item.duration = parseFloat(req.body.duration) || -1;
-        item.running = req.body.running == true ? 1 : 0;
-        item.status = req.body.status;
-        item.save(scb);
+        item[0].project_id = req.body.project;
+        item[0].task_id = req.body.task;
+        item[0].author = JSON.stringify(req.user);
+        item[0].starttime = new Date(req.body.start);
+        item[0].duration = parseFloat(req.body.duration) || -1;
+        item[0].running = req.body.running == true ? 1 : 0;
+        item[0].status = req.body.status;
+        item[0].save(scb);
       });
     }
   });
