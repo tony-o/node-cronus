@@ -35,7 +35,7 @@ var reparsetimers = function(){
       qq[q].duration = dd214;
       dd214 = Math.round(dd214*1000)/1000;
       dd214 = dd214 + (dd214.toString().indexOf(".") == -1 ? ".000" : Array(3 - dd214.toString().substr(dd214.toString.indexOf(".")+1).length).join("0"));
-      $(buffer).find(".time").text(dd214 + (Array(dd214.toString().length);
+      $(buffer).find(".time").text(dd214);
       $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
       $(buffer).find(".index").text(q);
       $(buffer).removeClass("hidden");
