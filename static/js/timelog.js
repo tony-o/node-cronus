@@ -45,18 +45,16 @@ var reparsetimers = function(){
         qq[q].running = !qq[q].running;
         reparsetimers();
       });
-      if(qq[q].id == -1){
-        $.ajax({
-          url:"/synctimer"
-          ,type:"POST"
-          ,contentType:"application/json; charset=utf-8"
-          ,data:JSON.stringify(qq[q])
-          ,success:function(data,status,xhr){
-            gg[q].id = (data.id) ? data.id : -1;
-            c.s("timers",JSON.stringify(gg));
-          }
-        });
-      }
+    $.ajax({
+      url:"/synctimer"
+        ,type:"POST"
+        ,contentType:"application/json; charset=utf-8"
+        ,data:JSON.stringify(qq[q])
+        ,success:function(data,status,xhr){
+          gg[q].id = (data.id) ? data.id : -1;
+          c.s("timers",JSON.stringify(gg));
+        }
+      });
       $("#opentimers #timerlist").append(buffer);
     })(q,qq);
   }
