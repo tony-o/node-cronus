@@ -13,10 +13,11 @@ body
   div.container
     div.hidden#tasktoproject
       -for(var i in locals.tasks)
-        peterpan.hidden
-          span.taskid!= locals.tasks[i].id
-          span.taskname!= locals.tasks[i].name
-          span.projectid!= locals.tasks[i].project_id
+        -if(!locals.tasks[i].archived)
+          peterpan.hidden
+            span.taskid!= locals.tasks[i].id
+            span.taskname!= locals.tasks[i].name
+            span.projectid!= locals.tasks[i].project_id
     ul.nav.nav-pills
       li: a(href="#tracktime") Track Time
       li: a(href="#opentimers") Open Timers
