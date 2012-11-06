@@ -106,6 +106,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
           scb("not-found",null);
           return;
         }
+        console.log("sAVER");
         item.project_id = req.body.project;
         item.task_id = req.body.task;
         item.author = JSON.stringify(req.user);
@@ -200,6 +201,6 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     
   });
   var port = process.env.PORT || 5000;
-  app.listen(port);
+  app.listen(port,{log:false});
 
 });
