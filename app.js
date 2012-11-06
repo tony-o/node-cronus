@@ -93,7 +93,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         ,task_id:req.body.task
         ,author:JSON.stringify(req.user)
         ,starttime:new Date(req.body.start)
-        ,duration:req.body.duration
+        ,duration:parseFloat(req.body.duration) || -1
       });
       item.save(scb);
     }else{
@@ -106,7 +106,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         item.task_id = req.body.task;
         item.author = JSON.stringify(req.user);
         item.starttime = new Date(req.body.start);
-        item.duration = req.body.duration;
+        item.duration = parseFloat(req.body.duration) || -1;
         item.running = req.body.running == true ? 1 : 0;
         item.save(scb);
       });
