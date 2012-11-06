@@ -38,24 +38,37 @@ var reparsetimers = function(){
       $(buffer).find(".index").text(q);
       $(buffer).removeClass("hidden");
       $(buffer).find(".deletetimer").click(function(){
-        qq.splice(q,1);
-        c.s("timers",JSON.stringify(qq));
+        gg.splice(q,1);
+        c.s("timers",JSON.stringify(gg));
         reparsetimers();
       });
       $(buffer).find(".toggletimer").click(function(){
-        qq[q].running = !qq[q].running;
+        gg[q].running = !gg[q].running;
         reparsetimers();
       });
-      $.ajax({
-        url:"/synctimer"
-        ,type:"POST"
-        ,contentType:"application/json; charset=utf-8"
-        ,data:JSON.stringify(qq[q])
-        ,success:function(data,status,xhr){
-          gg[q].id = (data.id) ? data.id : -1;
-          c.s("timers",JSON.stringify(gg));
+      var sync = function(){
+        $.ajax({
+          url:"/synctimer"
+          ,type:"POST"
+          ,contentType:"application/json; charset=utf-8"
+          ,data:JSON.stringify(gg[q])
+          ,success:function(data,status,xhr){
+            gg[q].id = (data.id) ? data.id : -1;
+            c.s("timers",JSON.stringify(gg));
+          }
+        });
+      };
+      $(buffer).find(".submittime").click(function(){
+        gg[q].status = "submitted";
+        gg[q].running = 0;
+        var dd214 = parseFloat(qq[q].duration) || 0;
+        if(qq[q].running){
+          dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
         }
+        gg[q].duration = dd214;
+        sync();
       });
+      sync();
       $("#opentimers #timerlist").append(buffer);
     })(q,qq);
   }
