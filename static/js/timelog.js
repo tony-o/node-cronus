@@ -100,6 +100,9 @@ $("#starttimer, #savetimer").click(function(){
   $("#timertime").val("0.00");
   $("#opentimers").click();
 });
+$("#projectname").change(function(){
+  console.log($(this).val());
+});
 $(".container ul.nav li a").click(function(){
   var dd = ["timerhistory","opentimers","tracktime"];
   for(var d in dd){ 
@@ -109,7 +112,7 @@ $(".container ul.nav li a").click(function(){
     }
   }
 });
-$("#tracktime").click();
+$("body > div.container ul.nav li a").first().click();
 
 setInterval(function(){
   reparsetimers();
