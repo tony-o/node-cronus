@@ -44,6 +44,7 @@ var reparsetimers = function(){
       });
       $(buffer).find(".toggletimer").click(function(){
         gg[q].running = !gg[q].running;
+        c.s("timers",JSON.stringify(gg));
         reparsetimers();
       });
       var sync = function(){
