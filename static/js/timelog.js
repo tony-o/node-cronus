@@ -96,7 +96,7 @@ setInterval(function(){
       var index = parseInt($(this).find(".index").text());
       if(!qq[index].running){ return; }
       var dd214 = parseFloat(qq[index].duration) || 0;
-      dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
+      dd214 += Math.floor(Math.abs(new Date() - new Date(qq[index].start))/1000/60)/60;
       $(this).find(".time").text(Math.round(dd214*1000)/1000);
     }catch(e){ }
   });
