@@ -98,6 +98,7 @@ $("#starttimer, #savetimer").click(function(){
   $("#taskname").val("");
   $("#timernotes").val("");
   $("#timertime").val("0.00");
+  $("#opentimers").click();
 });
 $(".container ul.nav li a").click(function(){
   var dd = ["timerhistory","opentimers","tracktime"];
@@ -108,7 +109,7 @@ $(".container ul.nav li a").click(function(){
     }
   }
 });
-$(".container ul.nav li a").first().click();
+$("#tracktime").click();
 
 setInterval(function(){
   reparsetimers();
