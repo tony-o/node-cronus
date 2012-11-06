@@ -82,6 +82,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   app.post("/synctimer",authenticated,function(req,res){
     console.log("SNACKS",JSON.stringify(req.body,1,1));
     var scb = function(e,newitem){
+      console.log("saving",JSON.stringify(newitem,1,1));
       if(e != null){
         res.json({e:e,data:req.body});
       }else{
@@ -100,6 +101,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     }else{
       timeitem.find({id:req.body.id,status:"open"},function(item){
         if(!item){
+          console.error("not found item:",req.body.id);
           scb("not-found",null);
           return;
         }

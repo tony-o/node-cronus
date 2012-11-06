@@ -46,8 +46,8 @@ var reparsetimers = function(){
         qq[q].running = !qq[q].running;
         reparsetimers();
       });
-    $.ajax({
-      url:"/synctimer"
+      $.ajax({
+        url:"/synctimer"
         ,type:"POST"
         ,contentType:"application/json; charset=utf-8"
         ,data:JSON.stringify(qq[q])
