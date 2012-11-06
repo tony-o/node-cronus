@@ -95,7 +95,8 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         ,task_id:req.body.task
         ,author:JSON.stringify(req.user)
         ,starttime:new Date(req.body.start)
-        ,duration:parseFloat(req.body.duration) || -1
+        ,duration:parseFloat(req.body.duration) || 0
+        ,status:req.body.status
       });
       item.save(scb);
     }else{
@@ -111,6 +112,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
         item.starttime = new Date(req.body.start);
         item.duration = parseFloat(req.body.duration) || -1;
         item.running = req.body.running == true ? 1 : 0;
+        item.status = req.body.status;
         item.save(scb);
       });
     }
