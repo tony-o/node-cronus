@@ -11,6 +11,12 @@ body
         div.nav-collapse.collapse
           include i/menu
   div.container
+    div.hidden#tasktoproject
+      -for(var i in locals.tasks)
+        peterpan.hidden
+          span.taskid!= locals.tasks[i].id
+          span.taskname!= locals.tasks[i].name
+          span.projectid!= locals.tasks[i].project_id
     ul.nav.nav-pills
       li: a(href="#tracktime") Track Time
       li: a(href="#opentimers") Open Timers
@@ -33,10 +39,10 @@ body
             label.control-label(for="taskname") Task
             div.controls
               select#taskname.input-medium(name="taskname",placeholder="Task Name")
-              -for(var i in locals.tasks)
-                -if(locals.tasks[i].archived){ continue; }
-                -if(locals.tasks[i].project_id == ddd)
-                  option(value=locals.tasks[i].id)!= locals.tasks[i].name
+                -for(var i in locals.tasks)
+                  -if(locals.tasks[i].archived){ continue; }
+                  -if(locals.tasks[i].project_id == ddd)
+                    option(value=locals.tasks[i].id)!= locals.tasks[i].name
           div.control-group
             label.control-label(for="timertime") Current Time
             div.controls
