@@ -82,9 +82,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
     }});
   });
   app.post("/synctimer",authenticated,function(req,res){
-    console.log("SNACKS",JSON.stringify(req.body));
     var scb = function(e,newitem){
-      console.log("SAVING",JSON.stringify(newitem));
       if(e != null){
         res.json({e:e,data:req.body});
       }else{
@@ -128,7 +126,8 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
           ,user:req.user
           ,projects:projects
           ,tasks:tasks
-          ,scripts:["/js/jquery.cookie.js","/js/timelog.js"]
+          ,scripts:["/js/jquery.cookie.js","/js/jquery-ui.js","/js/timelog.js"]
+          ,styles:["/css/jquery-ui.css"]
         }});
       });
     });
