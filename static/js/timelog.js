@@ -99,7 +99,7 @@ var reparsetimers = function(){
           dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
         }
         gg[q].duration = dd214;
-        sync();
+        sync(true);
       });
       sync();
       $("#opentimers #timerlist").append(buffer);

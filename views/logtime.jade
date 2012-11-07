@@ -28,6 +28,10 @@ body
         form.form-horizontal#timeform
           p.localstoragewarning.alert.alert-error.hidden Warning: you cannot refresh once you start the timer
           div.control-group
+            label.control-label(for="timedate") Project
+            div.controls
+              input#timedate(type="date",name="timedate",placeholder="Date")
+          div.control-group
             label.control-label(for="projectname") Project
             div.controls
               -var ddd = -1;

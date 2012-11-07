@@ -25,6 +25,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
   });
   var timeitem = db.define("time",{
     "author":{"type":"string"}
+    ,"date":{"type":"date"}
     ,"starttime":{"type":"date"}
     ,"duration":{"type":"float"}
     ,"status":{"type":"string"}
