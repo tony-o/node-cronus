@@ -127,7 +127,7 @@ var db = orm.connect("mysql://"+process.env.DBUSER+":"+process.env.DBPASS+"@"+pr
           ,projects:projects
           ,tasks:tasks
           ,scripts:["/js/jquery.cookie.js","/js/jquery-ui.js","/js/timelog.js"]
-          ,styles:["/css/jquery-ui.css"]
+          ,stylesheets:["/css/jquery-ui.css"]
         }});
       });
     });
