@@ -159,4 +159,4 @@ setInterval(function(){
   });
 },10000);
 reparsetimers();
-$("#timedate").datepicker({showOptions:{direction:"up"}});
+$("#timedate").datepicker({showOptions:{direction:"down"}});
