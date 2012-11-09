@@ -134,10 +134,10 @@ $(".container ul.nav li a").click(function(){
   var dd = ["timerhistory","opentimers","tracktime"];
   for(var d in dd){ 
     $("#" + dd[d]).hide();
-    $("#" + dd[d]).parent().removeClass("active");
+    $("#" + dd[d]).removeClass("active");
     if($(this).attr("href").toString().substr(1).toLowerCase() == dd[d]){
       $("#" + dd[d]).show();
-      $("#" + dd[d]).parent().addClass("active");
+      $("#" + dd[d]).addClass("active");
     }
   }
 });
