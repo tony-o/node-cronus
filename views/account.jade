@@ -1,15 +1,6 @@
 include i/head
 body
-  div.navbar.navbar-inverse.navbar-fixed-top
-    div.navbar-inner
-      div.container
-        a.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.brand(href="#") Timekeeping
-        div.nav-collapse.collapse
-          include i/menu
+  include i/navbar
   div.container
     h1!= "Log some time, " + locals.user.displayName;
     p: a(href="/logtime") GO >
