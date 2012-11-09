@@ -132,12 +132,12 @@ $("#projectname").change(function(){
 });
 $(".container ul.nav li a").click(function(){
   var dd = ["timerhistory","opentimers","tracktime"];
+  $(this).parent().parent().find("li").removeClass("active");
+  $(this).parent().addClass("active");
   for(var d in dd){ 
     $("#" + dd[d]).hide();
-    $("#" + dd[d]).removeClass("active");
     if($(this).attr("href").toString().substr(1).toLowerCase() == dd[d]){
       $("#" + dd[d]).show();
-      $("#" + dd[d]).addClass("active");
     }
   }
 });
