@@ -38,7 +38,7 @@ var reparsetimers = function(){
       }else{
         $(buffer).find(".timedate").hide();
       }
-      $(buffer).find(".name").text(qq[q].name);
+      $(buffer).find(".name").text(qq[q].title);
       $(buffer).find(".project").text(qq[q].projname);
       $(buffer).find(".task").text(qq[q].taskname);
       var dd214 = parseFloat(qq[q].duration) || 0;
@@ -86,7 +86,7 @@ var reparsetimers = function(){
           var newval = parseFloat($(par).find("#editingtimetime").val()) || val;
           gg[q].duration = newval;
           gg[q].start = (new Date()).toString();
-          gg[q].name = $(par).find("#editingtimename").val();
+          gg[q].title = $(par).find("#editingtimename").val();
           gg[q].project = $(par).find("#editingtimeproject").val();
           gg[q].projname = $(par).find("#editingtimeproject").find("option:selected").text();
           gg[q].task = $(par).find("#editingtimetask").val();
