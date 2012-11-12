@@ -45,7 +45,7 @@ var reparsetimers = function(){
       if(qq[q].running){
         dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
       }
-      qq[q].duration = dd214;
+      //qq[q].duration = dd214;
       dd214 = Math.round(dd214*1000)/1000;
       dd214 = dd214 + (dd214.toString().indexOf(".") == -1 ? ".000" : Array(3 - dd214.toString().substr(dd214.toString().indexOf(".")+1).length).join("0"));
       $(buffer).find(".time").text(dd214);
