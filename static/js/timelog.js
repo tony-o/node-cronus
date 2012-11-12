@@ -66,7 +66,7 @@ var reparsetimers = function(){
         val = gg[q].project;
         $(par).find(".project").text("");
         $(par).find(".project").append($("#projectname").clone());
-        $(par).find(".project").find("#projectname").attr("id","editingtimeproject").find("option").removeAttr("selected").find("option[value='" + val + "']").attr("selected","selected");
+        $(par).find(".project").find("#projectname").attr("id","editingtimeproject").attr("tasktarget","#editingtimetask").find("option").removeAttr("selected").find("option[value='" + val + "']").attr("selected","selected");
         val = gg[q].task;
         $(par).find(".task").text("");
         $(par).find(".task").append($("#taskname").clone());
@@ -146,11 +146,11 @@ $("#starttimer, #savetimer").click(function(){
 });
 $(".projectdropdown").live("change",function(){
   var tasktarget = $(this).attr("tasktarget");
-  $("#" + tasktarget + " option").remove();
+  $(tasktarget + " option").remove();
   var id = $(this).val();
   $("#tasktoproject > peterpan").each(function(){
     if($(this).find(".projectid").text() == id){
-      $("#" + tasktarget).append($("<option value=\"" + $(this).find(".taskid").text() + "\">" + $(this).find(".taskname").text() + "</option>"));
+      $(tasktarget).append($("<option value=\"" + $(this).find(".taskid").text() + "\">" + $(this).find(".taskname").text() + "</option>"));
     }
   });
 });

@@ -26,7 +26,7 @@ body
             label.control-label(for="projectname") Project
             div.controls
               -var ddd = -1;
-              select#projectname.projectdropdown.input-medium(name="projectname",placeholder="Project Name")
+              select#projectname.projectdropdown.input-medium(name="projectname",placeholder="Project Name",tasktarget="#taskname")
                 -for(var i in locals.projects)
                   -if(locals.projects[i].archived){ continue; }
                   -if(ddd == -1){ ddd = locals.projects[i].id; }
