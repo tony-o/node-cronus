@@ -70,7 +70,7 @@ var reparsetimers = function(){
         $(par).find(".task").text("");
         $(par).find(".task").append($("#taskname").clone());
         $(par).find(".task").find("#taskname").attr("id","editingtimetask").find("option").removeAttr("selected");
-        $(par).find(".project").find("#editingtimeproject").find("option[value='" + val + "']").attr("selected","selected");
+        $(par).find(".project").find("#editingtimeproject").find("option[value='" + gg[q].project + "']").attr("selected","selected");
         $(par).find(".task").find("#editingtimetask").find("option[value='" + val + "']").attr("selected","selected");
         
         $(par).find(".span4").text("").append($("<button class=\"btn btn-mini btn-primary\" id=\"saveedit\">Save</button>"));
