@@ -85,9 +85,9 @@ var reparsetimers = function(){
           gg[q].start = (new Date()).toString();
           gg[q].name = $(par).find("#editingtimename").val();
           gg[q].project = $(par).find("#editingtimeproject").val();
-          gg[q].projname = $(par).find("#editingtimeproject").find("option[selected='selected']").text();
+          gg[q].projname = $(par).find("#editingtimeproject").find("option:selected").text();
           gg[q].task = $(par).find("#editingtimetask").val();
-          gg[q].taskname = $(par).find("#editingtimetaskname").find("option[selected='selected']").text();
+          gg[q].taskname = $(par).find("#editingtimetaskname").find("option:selected").text();
 
           c.s("timers",JSON.stringify(gg));
           editing = 0;
