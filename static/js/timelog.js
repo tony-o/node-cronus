@@ -52,13 +52,14 @@ var reparsetimers = function(){
       $(buffer).find(".toggletimer").text(qq[q].running?"Stop Timer":"Start Timer");
       $(buffer).find(".index").text(q);
       $(buffer).removeClass("hidden");
-      $(buffer).find(".time").dblclick(function(){
+      $(buffer).find(".time,.name,.project,.task").dblclick(function(){
         editing = 1;
         var self = $(this);
+        $(self).parent().find(".span4").hide();
         var val = $(self).text();
-        $(self).text("");
-        $(self).append($("<input type=\"text\" value=\""+val+"\" id=\"editingtime\" />"));
-        $(self).find("#editingtime").blur(function(){
+        $(self).parent().find(".time").text("");
+        $(self).parent().find(".time").append($("<input type=\"text\" value=\""+val+"\" id=\"editingtime\" />"));
+        $(self).parent().find(".time").find("#editingtime").blur(function(){
           var newval = parseFloat($(this).val()) || val;
           $(self).text(newval);
           gg[q].duration = newval;
