@@ -141,7 +141,7 @@ $("#projectname").change(function(){
   });
 });
 $(".container ul.nav li a").click(function(){
-  var dd = ["timerhistory","opentimers","tracktime"];
+  var dd = ["opentimers","tracktime"];
   $(this).parent().parent().find("li").removeClass("active");
   $(this).parent().addClass("active");
   for(var d in dd){ 
