@@ -56,7 +56,6 @@ var reparsetimers = function(){
         editing = 1;
         var self = $(this);
         var par = $(self).parent();
-        $(par).find(".span4").hide();
         var val = $(par).find(".time").text();
         $(par).find(".time").text("");
         $(par).find(".time").append($("<input type=\"text\" value=\""+val+"\" id=\"editingtimetime\" />"));
@@ -71,11 +70,25 @@ var reparsetimers = function(){
         $(par).find(".task").text("");
         $(par).find(".task").append($("#taskname").clone());
         $(par).find(".task").find("#taskname").attr("id","editingtimetask").find("option").attr("selected","false").find("option[value=" + val + "]").attr("selected","selected");
-        $(self).parent().find(".time").find("#editingtime").blur(function(){
-          var newval = parseFloat($(this).val()) || val;
-          $(self).text(newval);
+        
+        $(par).find(".span4").text("").append($("<button class=\"btn btn-mini btn-primary\" id=\"saveedit\">Save</button>"));
+        $(par).find(".span4").append($("<button class=\"btn btn-mini btn-primary\" id=\"canceledit\">Cancel</button>"));
+
+        $(par).find("#saveedit,#canceledit").click(function(){
+          if($(this) == $("#canceledit")){
+            editing = 0;
+            reparsetimers();
+            return;
+          }
+          var newval = parseFloat($(par).find("#editingtimetime").val()) || val;
           gg[q].duration = newval;
           gg[q].start = (new Date()).toString();
+          gg[q].name = $(par).find("#editingtimename").val();
+          gg[q].project = $(par).find("#editingtimeproject").val();
+          gg[q].projname = $(par).find("#editingtimeproject").find("option[selected='selected']").text();
+          gg[q].task = $(par).find("#editingtimetask").val();
+          gg[q].taskname = $(par).find("#editingtimetaskname").find("option[selected='selected']").text();
+
           c.s("timers",JSON.stringify(gg));
           editing = 0;
           reparsetimers();
