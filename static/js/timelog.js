@@ -65,11 +65,13 @@ var reparsetimers = function(){
         val = gg[q].project;
         $(par).find(".project").text("");
         $(par).find(".project").append($("#projectname").clone());
-        $(par).find(".project").find("#projectname").attr("id","editingtimeproject").attr("tasktarget","#editingtimetask").find("option").removeAttr("selected").find("option[value='" + val + "']").attr("selected","selected");
+        $(par).find(".project").find("#projectname").attr("id","editingtimeproject").attr("tasktarget","#editingtimetask").find("option").removeAttr("selected");
+        $(par).find(".project").find("#editingtimeproject").find("option[value='" + val + "']").attr("selected","selected");
         val = gg[q].task;
         $(par).find(".task").text("");
         $(par).find(".task").append($("#taskname").clone());
-        $(par).find(".task").find("#taskname").attr("id","editingtimetask").find("option").attr("selected","false").find("option[value=" + val + "]").attr("selected","selected");
+        $(par).find(".task").find("#taskname").attr("id","editingtimetask").find("option").removeAttr("selected");
+        $(par).find(".task").find("#editingtimetask").find("option[value='" + val + "']").attr("selected","selected");
         
         $(par).find(".span4").text("").append($("<button class=\"btn btn-mini btn-primary\" id=\"saveedit\">Save</button>"));
         $(par).find(".span4").append($("<button class=\"btn btn-mini btn-primary\" id=\"canceledit\">Cancel</button>"));
