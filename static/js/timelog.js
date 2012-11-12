@@ -139,7 +139,7 @@ var reparsetimers = function(){
                 gg[q].id = (data.id) ? data.id : -1;
               }
               c.s("timers",JSON.stringify(gg));
-              reparsetimers();
+              remove && reparsetimers();
             }
           });
         })(remove);
