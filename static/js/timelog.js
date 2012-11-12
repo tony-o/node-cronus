@@ -22,7 +22,7 @@ var reparsetimers = function(){
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
   qq.sort(function(a,b){
-    return a.timedate < b.timedate;
+    return new Date(a.timedate) < new Date(b.timedate);
   });
   var gg = JSON.parse(JSON.stringify(qq));
   var str = "";
