@@ -126,21 +126,23 @@ var reparsetimers = function(){
       });
       var sync = function(remove){
         remove = remove === true ? true : false;
-        $.ajax({
-          url:"/synctimer"
-          ,type:"POST"
-          ,contentType:"application/json; charset=utf-8"
-          ,data:JSON.stringify(gg[q])
-          ,success:function(data,status,xhr){
-            if(remove){
-              gg.splice(q,1);
-            }else{
-              gg[q].id = (data.id) ? data.id : -1;
+        (function(remove){
+          $.ajax({
+            url:"/synctimer"
+            ,type:"POST"
+            ,contentType:"application/json; charset=utf-8"
+            ,data:JSON.stringify(gg[q])
+            ,success:function(data,status,xhr){
+              if(remove){
+                gg.splice(q,1);
+              }else{
+                gg[q].id = (data.id) ? data.id : -1;
+              }
+              c.s("timers",JSON.stringify(gg));
+              reparsetimers();
             }
-            c.s("timers",JSON.stringify(gg));
-            reparsetimers();
-          }
-        });
+          });
+        })(remove);
       };
       $(buffer).find(".submittime").click(function(){
         gg[q].status = "submitted";
@@ -152,7 +154,7 @@ var reparsetimers = function(){
         gg[q].duration = dd214;
         sync(true);
       });
-      sync();
+      sync(false);
       $("#opentimers #timerlist").append(buffer);
     })(q,qq);
   }
