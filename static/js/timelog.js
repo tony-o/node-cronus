@@ -55,10 +55,22 @@ var reparsetimers = function(){
       $(buffer).find(".time,.name,.project,.task").dblclick(function(){
         editing = 1;
         var self = $(this);
-        $(self).parent().find(".span4").hide();
-        var val = $(self).text();
-        $(self).parent().find(".time").text("");
-        $(self).parent().find(".time").append($("<input type=\"text\" value=\""+val+"\" id=\"editingtime\" />"));
+        var par = $(self).parent();
+        $(par).find(".span4").hide();
+        var val = $(par).find(".time").text();
+        $(par).find(".time").text("");
+        $(par).find(".time").append($("<input type=\"text\" value=\""+val+"\" id=\"editingtimetime\" />"));
+        val = $(par).find(".name").text();
+        $(par).find(".name").text("");
+        $(par).find(".name").append($("<textarea id=\"editingtimename\">"+val+"</textarea>"));
+        val = gg[q].project;
+        $(par).find(".project").text("");
+        $(par).find(".project").append($("#projectname").clone());
+        $(par).find(".project").find("#projectname").attr("id","editingtimeproject").find("option").attr("selected","false").find("option[value=" + val + "]").attr("selected","selected");
+        val = gg[q].task;
+        $(par).find(".task").text("");
+        $(par).find(".task").append($("#taskname").clone());
+        $(par).find(".task").find("#taskname").attr("id","editingtimetask").find("option").attr("selected","false").find("option[value=" + val + "]").attr("selected","selected");
         $(self).parent().find(".time").find("#editingtime").blur(function(){
           var newval = parseFloat($(this).val()) || val;
           $(self).text(newval);
