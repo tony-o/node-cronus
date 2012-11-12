@@ -74,7 +74,7 @@ var reparsetimers = function(){
         $(par).find(".project").find("#editingtimeproject").change();
         $(par).find(".task").find("#editingtimetask").find("option[value='" + val + "']").attr("selected","selected");
         
-        $(par).find(".span4").text("").append($("<button class=\"btn btn-mini btn-primary\" id=\"saveedit\">Save</button>")).append($("<span/>"));
+        $(par).find(".span4").text("").append($("<button class=\"btn btn-mini btn-primary\" id=\"saveedit\">Save</button>")).append($("<span>&nbsp;</span>"));
         $(par).find(".span4").append($("<button class=\"btn btn-mini btn-primary\" id=\"canceledit\">Cancel</button>"));
 
         $(par).find("#saveedit,#canceledit").click(function(){
