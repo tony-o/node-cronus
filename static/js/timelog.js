@@ -38,7 +38,7 @@ var reparsetimers = function(){
       }else{
         $(buffer).find(".timedate").hide();
       }
-      $(buffer).find(".name").text(qq[q].title);
+      $(buffer).find(".name").text(qq[q].name);
       $(buffer).find(".project").text(qq[q].projname);
       $(buffer).find(".task").text(qq[q].taskname);
       var dd214 = parseFloat(qq[q].duration) || 0;
@@ -74,7 +74,7 @@ var reparsetimers = function(){
         $(par).find(".project").find("#editingtimeproject").change();
         $(par).find(".task").find("#editingtimetask").find("option[value='" + val + "']").attr("selected","selected");
         
-        $(par).find(".span4").text("").append($("<button class=\"btn btn-mini btn-primary\" id=\"saveedit\">Save</button>"));
+        $(par).find(".span4").text("").append($("<button class=\"btn btn-mini btn-primary\" id=\"saveedit\">Save</button>")).append($("<span/>"));
         $(par).find(".span4").append($("<button class=\"btn btn-mini btn-primary\" id=\"canceledit\">Cancel</button>"));
 
         $(par).find("#saveedit,#canceledit").click(function(){
