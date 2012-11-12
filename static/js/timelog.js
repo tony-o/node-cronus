@@ -150,7 +150,7 @@ $("#timeform").submit(function(e){e.preventDefault();return false;});
 $("#starttimer, #savetimer").click(function(){
   var arr = c.g("timers");
   arr = arr instanceof Array ? arr : []; 
-  arr.push({title:$("#timername").val(),duration:$("#timertime").val(),projname:$("#projectname option:selected").text(),taskname:$("#taskname option:selected").text(),project:$("#projectname").val(),task:$("#taskname").val(),timedate:new Date(),start:new Date(),notes:$("#timernotes").val(),id:-1,running:$(this)==$("#savetimer")?false:true,"status":"open"});
+  arr.push({title:$("#timername").val(),duration:$("#timertime").val(),projname:$("#projectname option:selected").text(),taskname:$("#taskname option:selected").text(),project:$("#projectname").val(),task:$("#taskname").val(),timedate:new Date(),start:new Date(),notes:$("#timernotes").val(),id:-1,running:$(this)[0]==$("#savetimer")[0]?false:true,"status":"open"});
   c.s("timers",JSON.stringify(arr));
   reparsetimers();
   $("#timername").val("");
@@ -158,7 +158,7 @@ $("#starttimer, #savetimer").click(function(){
   $("#taskname").val("");
   $("#timernotes").val("");
   $("#timertime").val("0.00");
-  $("#opentimers").click();
+  $(".container ul.nav li a[href='#opentimers']").click();
 });
 $(".projectdropdown").live("change",function(){
   var tasktarget = $(this).attr("tasktarget");
