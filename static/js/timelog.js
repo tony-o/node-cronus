@@ -32,8 +32,8 @@ var reparsetimers = function(){
   for(var q in qq){
     (function(q,qq){ 
       var buffer = $(template).clone();
-      if(qq[q].timedate != lastdt){
-        lastdt = qq[q].timedate;
+      if(qq[q].timedate.toString().substr(0,qq[q].timedate.toString().indexOf("T")) != lastdt){
+        lastdt = qq[q].timedate.toString().substr(0,qq[q].timedate.toString().indexOf("T"));
         $(buffer).find(".timedate").text(lastdt);
       }else{
         $(buffer).find(".timedate").hide();
