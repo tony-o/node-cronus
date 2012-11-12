@@ -77,7 +77,7 @@ var reparsetimers = function(){
         $(par).find(".span4").append($("<button class=\"btn btn-mini btn-primary\" id=\"canceledit\">Cancel</button>"));
 
         $(par).find("#saveedit,#canceledit").click(function(){
-          if($(this) == $("#canceledit")[0]){
+          if($(this)[0] == $("#canceledit")[0]){
             editing = 0;
             reparsetimers();
             return;
