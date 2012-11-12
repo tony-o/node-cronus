@@ -144,12 +144,13 @@ $("#starttimer, #savetimer").click(function(){
   $("#timertime").val("0.00");
   $("#opentimers").click();
 });
-$("#projectname").change(function(){
-  $("#taskname option").remove();
+$(".projectdropdown").live("change",function(){
+  var tasktarget = $(this).attr("tasktarget");
+  $("#" + tasktarget + " option").remove();
   var id = $(this).val();
   $("#tasktoproject > peterpan").each(function(){
     if($(this).find(".projectid").text() == id){
-      $("#taskname").append($("<option value=\"" + $(this).find(".taskid").text() + "\">" + $(this).find(".taskname").text() + "</option>"));
+      $("#" + tasktarget).append($("<option value=\"" + $(this).find(".taskid").text() + "\">" + $(this).find(".taskname").text() + "</option>"));
     }
   });
 });
