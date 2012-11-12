@@ -58,10 +58,10 @@ var reparsetimers = function(){
         var par = $(self).parent();
         var val = $(par).find(".time").text();
         $(par).find(".time").text("");
-        $(par).find(".time").append($("<input type=\"text\" value=\""+val+"\" id=\"editingtimetime\" />"));
+        $(par).find(".time").append($("<input type=\"text\" class=\"input-mini\" value=\""+val+"\" id=\"editingtimetime\" />"));
         val = $(par).find(".name").text();
         $(par).find(".name").text("");
-        $(par).find(".name").append($("<textarea id=\"editingtimename\">"+val+"</textarea>"));
+        $(par).find(".name").append($("<textarea class=\"input-small\" id=\"editingtimename\">"+val+"</textarea>"));
         val = gg[q].project;
         $(par).find(".project").text("");
         $(par).find(".project").append($("#projectname").clone());
