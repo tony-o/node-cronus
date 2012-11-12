@@ -21,6 +21,10 @@ var reparsetimers = function(){
   editing = 1;
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
+  qq.sort(function(a,b){
+    return a.timedate > b.timedate;
+  });
+  for(var q in qq){ JSON.stringify(console.log(qq[q])); }
   var gg = JSON.parse(JSON.stringify(qq));
   var str = "";
   $("#opentimers #timerlist > div:not(:first-child)").remove();
@@ -111,7 +115,7 @@ $("#timeform").submit(function(e){e.preventDefault();return false;});
 $("#starttimer, #savetimer").click(function(){
   var arr = c.g("timers");
   arr = arr instanceof Array ? arr : []; 
-  arr.push({title:$("#timername").val(),duration:$("#timertime").val(),projname:$("#projectname option:selected").text(),taskname:$("#taskname option:selected").text(),project:$("#projectname").val(),task:$("#taskname").val(),start:new Date(),notes:$("#timernotes").val(),id:-1,running:$(this)==$("#savetimer")?false:true,"status":"open"});
+  arr.push({title:$("#timername").val(),duration:$("#timertime").val(),projname:$("#projectname option:selected").text(),taskname:$("#taskname option:selected").text(),project:$("#projectname").val(),task:$("#taskname").val(),timedate:new Date(),start:new Date(),notes:$("#timernotes").val(),id:-1,running:$(this)==$("#savetimer")?false:true,"status":"open"});
   c.s("timers",JSON.stringify(arr));
   reparsetimers();
   $("#timername").val("");
