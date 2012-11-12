@@ -109,9 +109,16 @@ var reparsetimers = function(){
         if(qq[q].running){
           dd214 += Math.floor(Math.abs(new Date() - new Date(qq[q].start))/1000/60)/60;
         }
-        console.log(startnew);
         gg[q].start = (new Date()).toString();
         gg[q].running = !gg[q].running;
+        if(startnew){
+          gg[q].running = false;
+          var n = JSON.parse(JSON.stringify(gg[q]));
+          n.running = true;
+          n.start = new Date();
+          n.timedate = new Date();
+          n.duration = 0;
+        }
         gg[q].duration = dd214;
         c.s("timers",JSON.stringify(gg));
         reparsetimers();
