@@ -54,18 +54,19 @@ body
       div#timerlist
         div.hidden
           h3.timedate $$TIMEDATE$$
-          div.span2.hidden.index $$INDEX$$
-          div.span2.name $$NAME$$
-          div.span2.project $$PROJECT$$
-          div.span2.task $$TASK$$
-          div.span1.time $$TIME$$
-          div.span4 
-            button.btn.btn-mini.btn-primary.toggletimer $$ACTION$$ Timer
-            span  
-            button.btn.btn-mini.btn-success.submittime Submit Time
-            span  
-            button.btn.btn-mini.btn-danger.deletetimer Remove Timer
-    div#timerhistory
+          div
+            div.span2.hidden.index $$INDEX$$
+            div.span2.name $$NAME$$
+            div.span2.project $$PROJECT$$
+            div.span2.task $$TASK$$
+            div.span1.time $$TIME$$
+            div.span4 
+              button.btn.btn-mini.btn-primary.toggletimer $$ACTION$$ Timer
+              span  
+              button.btn.btn-mini.btn-success.submittime Submit Time
+              span  
+              button.btn.btn-mini.btn-danger.deletetimer Remove Timer
+      div#timerhistory
       h2 Timer History
         div#history 
     include i/feeter 
