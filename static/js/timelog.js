@@ -22,16 +22,22 @@ var reparsetimers = function(){
   var qq = c.g("timers");
   qq = qq instanceof Array ? qq : [];
   qq.sort(function(a,b){
-    return a.timedate > b.timedate;
+    return a.timedate < b.timedate;
   });
-  for(var q in qq){ JSON.stringify(console.log(qq[q])); }
   var gg = JSON.parse(JSON.stringify(qq));
   var str = "";
   $("#opentimers #timerlist > div:not(:first-child)").remove();
   var template = $("#opentimers #timerlist > div").first();
+  var lastdt = "";
   for(var q in qq){
     (function(q,qq){ 
       var buffer = $(template).clone();
+      if(qq[q].timedate != lastdt){
+        lastdt = qq[q].timedate);
+        $(buffer).find(".timedate").text(lastdt);
+      }else{
+        $(buffer).find(".timedate").hide();
+      }
       $(buffer).find(".name").text(qq[q].title);
       $(buffer).find(".project").text(qq[q].projname);
       $(buffer).find(".task").text(qq[q].taskname);
