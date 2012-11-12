@@ -66,7 +66,7 @@ var reparsetimers = function(){
         val = gg[q].project;
         $(par).find(".project").text("");
         $(par).find(".project").append($("#projectname").clone());
-        $(par).find(".project").find("#projectname").attr("id","editingtimeproject").find("option").attr("selected","false").find("option[value=" + val + "]").attr("selected","selected");
+        $(par).find(".project").find("#projectname").attr("id","editingtimeproject").find("option").removeAttr("selected").find("option[value='" + val + "']").attr("selected","selected");
         val = gg[q].task;
         $(par).find(".task").text("");
         $(par).find(".task").append($("#taskname").clone());
