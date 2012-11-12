@@ -33,7 +33,7 @@ var reparsetimers = function(){
     (function(q,qq){ 
       var buffer = $(template).clone();
       if(qq[q].timedate != lastdt){
-        lastdt = qq[q].timedate);
+        lastdt = qq[q].timedate;
         $(buffer).find(".timedate").text(lastdt);
       }else{
         $(buffer).find(".timedate").hide();
