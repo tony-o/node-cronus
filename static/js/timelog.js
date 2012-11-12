@@ -118,6 +118,7 @@ var reparsetimers = function(){
           n.start = new Date();
           n.timedate = new Date();
           n.duration = 0;
+          gg.push(n);
         }
         gg[q].duration = dd214;
         c.s("timers",JSON.stringify(gg));
