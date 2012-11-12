@@ -125,7 +125,7 @@ var reparsetimers = function(){
         reparsetimers();
       });
       var sync = function(remove){
-        remove = remove ? true : false;
+        remove = remove === true ? true : false;
         $.ajax({
           url:"/synctimer"
           ,type:"POST"
