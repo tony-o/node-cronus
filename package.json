@@ -1,13 +1,12 @@
 {
   "name":"node-cronus"
-  ,"version":"0.0.1"
+  ,"version":"0.0.2"
   ,"dependencies":{
     "express":""
     ,"passport":""
     ,"passport-google":""
     ,"jade":""
-    ,"orm":""
-    ,"mysql":""
+    ,"socket.io":""
   }
   ,"engines":{
     "node":"0.8.x"
