@@ -1,7 +1,7 @@
 include i/head
 body
-  include i/navbar
-  div.container
-    h1!= locals.user.displayName;
-
- include i/feeter 
+   include i/navbar
+   div.container
+      h1(block="header") 
+      p(block="timeentry")
+   include i/feeter 

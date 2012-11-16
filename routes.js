@@ -1,5 +1,6 @@
 var connect = require("connect");
 var cookie = require("express/node_modules/cookie");
+var jade = require("jade");
 
 module.exports = function(app,io,session){
    var authenticated = function(req,res,n){
@@ -22,7 +23,7 @@ module.exports = function(app,io,session){
       io.set("authorization",function(data,cb){
          if(data.headers.cookie != null){
             data.cookie = cookie.parse(data.headers.cookie);
-            data.sessionID = connect.utils.parseSignedCookie(data.cookie["express.sid"],"ramb0");
+            data.sessionID = connect.utils.parseSignedCookie(data.cookie["express.sid"],process.env.APPKEY||"ramb0");
             session.get(data.sessionID, function(e,s){
                if(e || !s){
                   console.error("auth error sio - session find");
@@ -40,6 +41,8 @@ module.exports = function(app,io,session){
 
    io.sockets.on("connection",function(sock){
       var user = sock.handshake.session;
-      //do shit      
+      //do shit
+      require("./socks")(user,sock);
+ 
    });
 };

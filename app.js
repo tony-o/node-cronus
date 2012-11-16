@@ -26,7 +26,7 @@ passport.use(new strategy({
 app.configure(function(){
    app.use(express.cookieParser());
    app.use(express.bodyParser());
-   app.use(express.session({"secret":"ramb0",store:session,key:"express.sid",cookie:{maxAge:60*60*1000}}));
+   app.use(express.session({"secret":process.env.APPKEY||"ramb0",store:session,key:"express.sid",cookie:{maxAge:60*60*1000}}));
    app.use(passport.initialize());
    app.use(passport.session());
    app.use(app.router);
