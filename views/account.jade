@@ -2,7 +2,6 @@ include i/head
 body
   include i/navbar
   div.container
-    h1!= "Log some time, " + locals.user.displayName;
-    p: a(href="/logtime") GO >
+    h1!= locals.user.displayName;
 
  include i/feeter 
