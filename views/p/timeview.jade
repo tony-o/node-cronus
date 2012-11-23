@@ -3,8 +3,9 @@ h3 time entries
   div.timeentry
     div
       span.bigandbold!= locals.projects[locals.times[i].project] ? locals.projects[locals.times[i].project].name : "error";
-      span!= "(" + (locals.projects[locals.times[i]] ? locals.projects[locals.times[i].project].customer : locals.times[i].project) + ")";
+      span!= "(" + (locals.projects[locals.times[i].project] ? locals.projects[locals.times[i].project].customer : locals.times[i].project) + ")";
     div!= locals.tasks[locals.times[i].task] + (locals.times[i].notes ? " - " + locals.times[i].notes : "");
-    div.bigandbold!= locals.times[i].time;
+    div.bigandbold!= locals.times[i].time.toFixed(2);
     div  
       button.toggletimer(href="#no",_id=locals.times[i]._id,_running=locals.times[i].running)!= locals.times[i].running ? "Stop" : "Start";
+      button.edittimer(href="#no",_data=JSON.stringify(locals.times[i]).replace(/"/g,"\\\"")) Edit

@@ -17,6 +17,7 @@ module.exports = {
     ,"running":Boolean
     ,"project":String
     ,"task":String
+    ,"notes":String
   }
 };
 

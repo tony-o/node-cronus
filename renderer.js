@@ -81,11 +81,24 @@ module.exports = {
     var tobject;
     switch(data.type){
       case "add":
+        console.log("edit");
         tobject = new models.time(data.data);
         tobject.author = user.emails[0].value;
         tobject.date.setHours(0,0,0,0);
         tobject.save();
         self.timeview(sock,user,data);
+        break;
+      case "edit":
+        console.log("edit");
+        models.time.findById(data.id,function(e,d){
+          delete data.data.id;
+          delete data.data.date;
+          delete data.data.running;
+          if(d.running){ d.started = new Date(); }
+          for(var i in data.data){ d[i] = data.data[i]; }
+          d.save();
+          self.timeview(sock,user,data);
+        });
         break;
       case "start":
         models.time.findById(data.id,function(e,d){
@@ -102,7 +115,6 @@ module.exports = {
         break;
       case "stop":
         models.time.findById(data.id,function(e,d){
-          console.log(d);
           var now = new Date(); 
           if(d.running){
             d.time += self.__timebetween(now,d.started);            

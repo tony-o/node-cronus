@@ -32,9 +32,22 @@ sock.hooks.projectoptions.push(function(data){
   socket.emit("render",{view:"taskoptions",project:$("[block='projectoptions'] option:selected").first().val()}); 
 });
 
+/* PROJET/TASK CASCADE */
+$("select[block='projectoptions']").live("change",function(){
+  console.log("Called");
+  for(var a in sock.hooks.projectoptions){
+    sock.hooks.projectoptions[a]({});
+  }
+});
+
 /* DATE PREV/NEXT FUNCTIONALITY */
 $(".dateleft,.dateright").live("click",function(){
   sock.data.date.setDate(sock.data.date.getDate()+($(this)[0] == $(".dateleft")[0]?-1:1));
+  if(sock.data.date - new Date() > 0){
+    $(".TEnewtimer").hide();
+  }else{
+    $(".TEnewtimer").show();
+  }
   socket.emit("render",{view:"dateheader",date:sock.data.date});
   socket.emit("render",{view:"timeview",date:sock.data.date});
 });
@@ -47,22 +60,60 @@ $(".jumptotoday").live("click",function(){
 /* SAVE/START TIME FUNCTIONALITY */
 $("#TEsave,#TEstart").live("click",function(){
   var input = {};
+  var action = "add";
   input.running = $("#TEstart")[0] == $(this)[0];
   $("div.TEnewtimer").find("input,select,textarea").each(function(){
     input[$(this).attr("id").substring(2)] = $(this).val() || $(this).text();
   });
-  input.date = new Date();
-  socket.emit("sync",{type:"add",data:input});
+  if(input.id != ""){
+    action = "edit";
+  }else{
+    input.date = sock.data.date;
+  }
+  socket.emit("sync",{type:action,data:input,id:input.id,date:sock.data.date});
+  /* reset form */
+  $("#TEstart").show();
+  $("#TEproject option").attr("selected","");
+  $("#TEproject option:eq(0)").attr("selected","selected");
+  $("#TEproject").change();
+  $("#TEnotes").val("");
+  $("#TEtime").val("0.00");
+  $("#TEid").val("");
+  $("#TEdate").val(sock.data.date); 
 });
 
 /* TOGGLE EXISTING TIMER */
 $("button.toggletimer").live("click",function(){
   var action = $(this).attr("_running") ? "stop" : "start";
-  console.log(action+":"+$(this).attr("_id"));
-  socket.emit("sync",{type:action,id:$(this).attr("_id")});
+  socket.emit("sync",{type:action,id:$(this).attr("_id"),date:sock.data.date});
 });
 
-/* REFRESH TIMER STUFF */
-setInterval(function(){ socket.emit("render",{view:"timeview",date:sock.data.date}); }, 20000);
+/* EDIT TIMER */
+$("button.edittimer").live("click",function(){
+  var data = $(this).attr("_data").replace(/\\"/g,"\"");
+  data = eval("("+data+")");
+  $("#TEproject").val(data.project);
+  var index = -1;
+  var nf = function(){
+    sock.hooks.taskoptions.splice(index,1);
+    $("select[block='taskoptions']").val(data.task);
+  };
+  sock.hooks.taskoptions = sock.hooks.taskoptions || [];
+  index = sock.hooks.taskoptions.push(nf) - 1;
+  $("select[block='projectoptions']").change();
+  $("#TEnotes").val(data.notes);
+  $("#TEtime").val(data.time.toFixed(2));
+  $("#TEdate").val(data.date);
+  $("#TEid").val(data._id);
+  $("#TEstart").hide();
+});
+
+/* REFRESH TIMERS */
+setInterval(function(){ socket.emit("render",{view:"timeview",date:sock.data.date}); }, 36000);
 
 socket.emit("render",{view:"init"});
+socket.on("disconnect",function(){
+  setTimeout(function(){
+    window.location = "/";
+  },500);
+});
