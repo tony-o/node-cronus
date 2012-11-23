@@ -1,19 +1,22 @@
 module.exports = {
-   "project":{
-      "name":String
-      ,"archived":Number
-   }
-   ,"task":{
-      "name":String
-      ,"archived":Number
-   }
-   ,"time":{
-      "author":String
-      ,"date":Date
-      ,"starttime":Date
-      ,"duration":Number
-      ,"status":String
-      ,"running":Number
-   }
+  "project":{
+    "name":String
+    ,"customer":String
+    ,"archived":Number
+  }
+  ,"task":{
+    "project":String
+    ,"name":String
+    ,"archived":Number
+  }
+  ,"time":{
+    "author":String
+    ,"date":Date
+    ,"time":Number
+    ,"started":Date
+    ,"running":Boolean
+    ,"project":String
+    ,"task":String
+  }
 };
 

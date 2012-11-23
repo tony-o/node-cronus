@@ -1,0 +1,4 @@
+-var first = "";
+-for(var p in locals.tasks)
+  -first = first != "" ? first : locals.tasks[p]._id;
+  option(value=locals.tasks[p]._id)!= locals.tasks[p].name

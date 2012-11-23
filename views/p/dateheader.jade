@@ -1,0 +1,5 @@
+include ../i/date
+-var blocks = blocks || {};
+-blocks.dateheader = {raw:(new Date(locals.date || new Date()))};
+-blocks.dateheader.formatted = blocks.dateheader.raw.format("ddd mm/dd");
+span!= blocks.dateheader.formatted

@@ -1,0 +1,4 @@
+-var first = "";
+-for(var p in locals.projects)
+  -first = first != "" ? first : locals.projects[p]._id;
+  option(value=locals.projects[p]._id)!= locals.projects[p].name

@@ -10,7 +10,7 @@ var app = express();
 var server = http.createServer(app);
 var io = socketio.listen(server,{"log level":0});
 var session = new express.session.MemoryStore();
-var DOMAIN = process.env.DOMAIN || "10.0.0.155:5000";
+var DOMAIN = process.env.DOMAIN || require("./config").domain;
 
 
 passport.serializeUser(function(user,done){done(null,user);});

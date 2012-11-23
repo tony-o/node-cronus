@@ -5,3 +5,6 @@ body{
 .indent2{padding-left:.2em;}
 .archived{color:#999;}
 .indent2 a{margin-left:.2em;}
+.active{
+  color:#0088CC;
+}
