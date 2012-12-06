@@ -2,28 +2,36 @@ include ../i/date
 -var weekdays = ["S","M","T","W","T","F","S","TOTAL"];
 div.timeentryheader
   h2
-    button.btn-mini.btn-info.dateleft &lt;
+    button.btn.btn-inverse.dateleft
+      i.icon-white.icon-arrow-left
     span &nbsp;
-    span(block="dateheader")
+    span.fixedwidth(block="dateheader")
       include dateheader
-    button.btn-mini.btn-info.dateright &gt;
     span &nbsp;
-    button.btn-mini.btn-info.jumptotoday Go to Today
-table
-   tr
-     -for(var i in weekdays)
-       th(class="col"+i+((new Date(locals.date||new Date())).getDay() == i?" active":""))!= weekdays[i];
-   tr
-      td(colspan=weekdays.length)
-        div(block="timeview")
-div.TEnewtimer
-  h4 
-    label(for="project") Project/Task
-  select.fillprojects(name="project",id="TEproject",block="projectoptions")
-  select.filltasks(name="tasks",id="TEtask",block="taskoptions")
-  textarea(name="notes",id="TEnotes")
-  input(name="id",value="",type="hidden",id="TEid")
-  input(name="date",value=locals.date,id="TEdate",type="hidden")
-  input(name="hours",value="0.00",id="TEtime",type="number")
-  button.btn#TEsave Save
-  button.btn#TEstart Start Timer
+    button.btn.btn-inverse.dateright
+      i.icon-white.icon-arrow-right 
+    span &nbsp;
+    button.btn.btn-link.jumptotoday Go to Today
+div.addtime(rel="tonebox",target="tonebox")
+  p.big +
+  p Add Time
+table.timers
+  tr
+    -for(var i in weekdays)
+      th(class="col"+i+((new Date(locals.date||new Date())).getDay() == i?" active":""))!= weekdays[i];
+  tr.summary(block="weeklysummary")
+  tr.timers
+    td(colspan=weekdays.length)
+      div(block="timeview")
+div.tonebox.TEnewtimer.hidden
+  div
+    form.form-horizontal(onsubmit="return false;")
+      select.input-block-level.fillprojects(name="project",id="TEproject",block="projectoptions",placeholder="Project")
+      select.input-block-level.filltasks(name="tasks",id="TEtask",block="taskoptions",placeholder="Task")
+      textarea.input-block-level(name="notes",id="TEnotes",placeholder="Notes")
+      input(name="id",value="",type="hidden",id="TEid")
+      input(name="date",value=locals.date,id="TEdate",type="hidden")
+      input.input-block-level(name="hours",value="0.00",id="TEtime",type="number",placeholder="Time")
+      button.btn.btn-block.btn-large.btn-primary#TEsave Save
+      button.btn.btn-block.btn-large.btn-success#TEstart Start Timer
+      button.btn.btn-block.btn-large.btn-link#TEcancel Cancel

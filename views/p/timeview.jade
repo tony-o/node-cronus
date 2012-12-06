@@ -1,11 +1,17 @@
-h3 time entries
--for(var i in locals.times)
-  div.timeentry
-    div
-      span.bigandbold!= locals.projects[locals.times[i].project] ? locals.projects[locals.times[i].project].name : "error";
-      span!= "(" + (locals.projects[locals.times[i].project] ? locals.projects[locals.times[i].project].customer : locals.times[i].project) + ")";
-    div!= locals.tasks[locals.times[i].task] + (locals.times[i].notes ? " - " + locals.times[i].notes : "");
-    div.bigandbold!= locals.times[i].time.toFixed(2);
-    div  
-      button.toggletimer(href="#no",_id=locals.times[i]._id,_running=locals.times[i].running)!= locals.times[i].running ? "Stop" : "Start";
-      button.edittimer(href="#no",_data=JSON.stringify(locals.times[i]).replace(/"/g,"\\\"")) Edit
+-if(locals.times.length > 0)
+  h3 Time Entries
+  -for(var i in locals.times)
+    div.timeentry
+      div.title
+        span.bigandbold!= locals.projects[locals.times[i].project] ? locals.projects[locals.times[i].project].name : "error";
+        span!= "(" + (locals.projects[locals.times[i].project] ? locals.projects[locals.times[i].project].customer : locals.times[i].project) + ")";
+      div.notes!= locals.tasks[locals.times[i].task] + (locals.times[i].notes ? " - " + locals.times[i].notes : "");
+      div.time!= locals.times[i].time.toFixed(2);
+      div.buttons
+        a.toggletimer(href="#no",_id=locals.times[i]._id,_running=locals.times[i].running)!= locals.times[i].running ? "<img src=\"/img/pause.png\"/>" : "<img src=\"/img/play.png\"/>";
+        a.edittimer(href="#no",_data=JSON.stringify(locals.times[i]).replace(/"/g,"\\\""))
+          img(src="/img/tag.png")
+-else
+  h3.center No time has been logged
+  h4
+    span.addtime(rel="tonebox",target="tonebox") Create a time entry

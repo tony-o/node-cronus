@@ -26,17 +26,19 @@ sock.hooks.dateheader.push(function(data){
 sock.hooks.timeentry = [];
 sock.hooks.timeentry.push(function(data){
   socket.emit("render",{view:"timeview",date:sock.data.date});
+  $("[rel='tonebox'] > div.tonebox").addClass("hidden");
 });
 sock.hooks.projectoptions = [];
 sock.hooks.projectoptions.push(function(data){
-  socket.emit("render",{view:"taskoptions",project:$("[block='projectoptions'] option:selected").first().val()}); 
+  if(!data){ data = {}; }
+  if(!data.project){ data.project = $("[block='projectoptions'] option:selected").first().val();  }
+  socket.emit("render",{view:"taskoptions",project:data.project}); 
 });
 
 /* PROJET/TASK CASCADE */
 $("select[block='projectoptions']").live("change",function(){
-  console.log("Called");
   for(var a in sock.hooks.projectoptions){
-    sock.hooks.projectoptions[a]({});
+    sock.hooks.projectoptions[a]({project:$(this).find("option:selected").first().val()});
   }
 });
 
@@ -79,20 +81,25 @@ $("#TEsave,#TEstart").live("click",function(){
   $("#TEnotes").val("");
   $("#TEtime").val("0.00");
   $("#TEid").val("");
-  $("#TEdate").val(sock.data.date); 
+  $("#TEdate").val(sock.data.date);
+  $(".tonebox").addClass("hidden"); 
+});
+$("#TEcancel").live("click",function(){
+  $(".tonebox").addClass("hidden");
 });
 
 /* TOGGLE EXISTING TIMER */
-$("button.toggletimer").live("click",function(){
+$(".toggletimer").live("click",function(){
   var action = $(this).attr("_running") ? "stop" : "start";
   socket.emit("sync",{type:action,id:$(this).attr("_id"),date:sock.data.date});
 });
 
 /* EDIT TIMER */
-$("button.edittimer").live("click",function(){
+$(".edittimer").live("click",function(){
   var data = $(this).attr("_data").replace(/\\"/g,"\"");
   data = eval("("+data+")");
   $("#TEproject").val(data.project);
+  console.log(data);  
   var index = -1;
   var nf = function(){
     sock.hooks.taskoptions.splice(index,1);
@@ -106,6 +113,8 @@ $("button.edittimer").live("click",function(){
   $("#TEdate").val(data.date);
   $("#TEid").val(data._id);
   $("#TEstart").hide();
+  $("[rel='tonebox']").click();
+  $("#tonebox").removeClass("hidden");
 });
 
 /* REFRESH TIMERS */
@@ -116,4 +125,9 @@ socket.on("disconnect",function(){
   setTimeout(function(){
     window.location = "/";
   },500);
+});
+
+/* TONEBOX ON PAGE */
+$("[rel='tonebox']").live("click",function(){
+  $("."+$(this).attr("target")).removeClass("hidden");
 });

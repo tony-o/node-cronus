@@ -63,9 +63,27 @@ module.exports = {
           for(var i in d){ 
             d[i].time += (d[i].running) ? self.__timebetween(d[i].started,new Date()) : 0;
           }
+          self.weeklysummary(sock,user,data);
           sock.emit("render",{name:"timeview",data:self.read("timeview.jade")({locals:{times:d,projects:projects,tasks:tasks}})});
         });
       });
+    });
+  }
+  ,"weeklysummary":function(sock,user,data){
+    var self = this;
+    var date = data.date || new Date();
+    date = (new Date(date));
+    date.setHours(0,0,0,0);
+    var beginning = new Date(date.setDate(date.getDate() - date.getDay() + (date.getDay() == 0 ? -6 : 1)));
+    var end = new Date(beginning);
+    end.setDate(end.getDate() + 7);
+    models.time.find({author:user.emails[0].value}).gte("date",beginning).lte("date",end).sort({"date":1}).exec(function(r,d){
+      var totals = [0,0,0,0,0,0,0,0];
+      for(var i in d){
+        totals[d[i].date.getDay()] += d[i].time;
+        totals[7] += d[i].time;
+      }
+      sock.emit("render",{name:"weeklysummary",data:self.read("weeklysummary.jade")({locals:{data:totals}})});
     });
   }
   ,"dateheader":function(sock,user,data){
@@ -81,7 +99,6 @@ module.exports = {
     var tobject;
     switch(data.type){
       case "add":
-        console.log("edit");
         tobject = new models.time(data.data);
         tobject.author = user.emails[0].value;
         tobject.date.setHours(0,0,0,0);
@@ -89,7 +106,6 @@ module.exports = {
         self.timeview(sock,user,data);
         break;
       case "edit":
-        console.log("edit");
         models.time.findById(data.id,function(e,d){
           delete data.data.id;
           delete data.data.date;
@@ -117,7 +133,7 @@ module.exports = {
         models.time.findById(data.id,function(e,d){
           var now = new Date(); 
           if(d.running){
-            d.time += self.__timebetween(now,d.started);            
+            d.time += self.__timebetween(now,d.started);
           }
           d.running = false;
           d.started = null;
